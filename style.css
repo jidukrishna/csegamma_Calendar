@@ -1,0 +1,1282 @@
+/* ==========================================================================
+   CSE Gamma Class Calendar - Vibrant White Peach Cyber-Manga & Torii Theme
+   With Computer Science Badges & Mini CSS Neko Cats 🐱
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Fira+Code:wght@500;700&family=Kosugi+Maru&family=Shippori+Mincho:wght@700;800&family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Palette - Crisp Whiteish Manga Paper & Warm Peach */
+  --bg-dark: #FFF8F5;
+  --bg-surface: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #FFF2EC;
+
+  --border-color: #1A1114;
+  --ink-black: #1A1114;
+  --ink-shadow: 4px 4px 0px #1A1114;
+  --ink-shadow-sm: 2.5px 2.5px 0px #1A1114;
+
+  --text-main: #1A1114;
+  --text-muted: #5A4046;
+  --text-dim: #8A6B72;
+
+  /* Peach & Torii Colors */
+  --peach-pink: #FF6B81;
+  --peach-coral: #FF5252;
+  --peach-glow: rgba(255, 107, 129, 0.35);
+
+  --torii-red: #E63946;
+  --torii-red-glow: rgba(230, 57, 70, 0.35);
+
+  --peach-gold: #FF9F43;
+  --bamboo-green: #10B981;
+  --manga-yellow: #FFD166;
+  --cyber-purple: #8A2BE2;
+
+  /* Event Type Mapping */
+  --type-exam: var(--torii-red);
+  --type-exam-bg: #FFE5E7;
+
+  --type-assignment: var(--peach-gold);
+  --type-assignment-bg: #FFF0E0;
+
+  --type-class: var(--peach-pink);
+  --type-class-bg: #FFE8EC;
+
+  --type-personal: var(--bamboo-green);
+  --type-personal-bg: #E6F7F2;
+
+  /* Fonts */
+  --font-manga: 'Bangers', cursive, sans-serif;
+  --font-code: 'Fira Code', monospace;
+  --font-kanji: 'Shippori Mincho', 'Kosugi Maru', serif;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Geometry */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 26px;
+
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Universal Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  min-height: 100vh;
+  line-height: 1.5;
+  overflow-x: hidden;
+  position: relative;
+  /* Crisp White Manga Halftone Dot Background Pattern */
+  background-image: 
+    radial-gradient(rgba(255, 107, 129, 0.12) 15%, transparent 16%),
+    radial-gradient(rgba(255, 159, 67, 0.1) 15%, transparent 16%),
+    linear-gradient(180deg, #FFFFFF 0%, #FFF4EE 100%);
+  background-size: 16px 16px, 24px 24px, 100% 100%;
+  background-position: 0 0, 8px 8px, 0 0;
+  background-attachment: fixed;
+}
+
+/* Background Falling Canvas */
+#sakura-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* App Container */
+.app-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1.25rem 1.25rem 4rem 1.25rem;
+}
+
+/* Vibrant Whiteish Manga Hero Banner */
+.manga-hero-banner {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(255, 235, 230, 0.9)), url('assets/manga_samurai_hero.png') center/cover no-repeat;
+  border: 3px solid var(--ink-black);
+  box-shadow: var(--ink-shadow);
+  border-radius: var(--radius-xl);
+  padding: 2.25rem 2rem;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: visible;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.manga-hero-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 245, 240, 0.88) 60%, rgba(255, 255, 255, 0.45) 100%);
+  z-index: 1;
+  border-radius: calc(var(--radius-xl) - 3px);
+}
+
+.manga-hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.manga-torii-logo {
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  border: 3px solid var(--ink-black);
+  box-shadow: var(--ink-shadow-sm);
+  background: #FFFFFF;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+/* CSE Gamma Computer Science Badge Pill */
+.cse-gamma-pill {
+  font-family: var(--font-code);
+  font-size: 0.825rem;
+  font-weight: 700;
+  background: #FFFFFF;
+  border: 2px solid var(--ink-black);
+  padding: 0.2rem 0.65rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--torii-red);
+  box-shadow: var(--ink-shadow-sm);
+  margin-bottom: 0.3rem;
+  width: fit-content;
+}
+
+.brand-title h1 {
+  font-family: var(--font-manga);
+  font-size: 2.9rem;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: var(--ink-black);
+  text-shadow: 2.5px 2.5px 0px #FFD5CC;
+  text-transform: uppercase;
+}
+
+.brand-title p {
+  font-size: 0.925rem;
+  color: var(--torii-red);
+  font-family: var(--font-kanji);
+  font-weight: 800;
+  margin-top: 0.2rem;
+}
+
+.header-actions {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* Comic Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--radius-md);
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  border: 2.5px solid var(--ink-black);
+  background: #FFFFFF;
+  color: var(--text-main);
+  text-decoration: none;
+  user-select: none;
+  box-shadow: var(--ink-shadow-sm);
+  touch-action: manipulation;
+}
+
+.btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0px var(--ink-black);
+  background: var(--bg-card-hover);
+}
+
+.btn:active {
+  transform: translate(0px, 0px);
+  box-shadow: 1px 1px 0px var(--ink-black);
+}
+
+.btn-peach {
+  background: linear-gradient(135deg, var(--peach-pink), var(--peach-coral));
+  color: #FFFFFF;
+  text-shadow: 1px 1px 0px var(--ink-black);
+}
+
+.btn-torii {
+  background: linear-gradient(135deg, var(--torii-red), #C5221F);
+  color: #FFFFFF;
+  text-shadow: 1px 1px 0px var(--ink-black);
+}
+
+/* Sound Effect Callout Badge */
+.manga-sound-effect {
+  position: absolute;
+  top: -14px;
+  right: 25px;
+  font-family: var(--font-code);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink-black);
+  background: var(--manga-yellow);
+  padding: 0.2rem 0.8rem;
+  border: 2.5px solid var(--ink-black);
+  box-shadow: 3px 3px 0px var(--ink-black);
+  transform: rotate(4deg);
+  z-index: 4;
+}
+
+/* 🐱 MINI CSS CATS HANGING OUT AROUND THE SITE */
+
+/* 1. Header Roof Sitting Cat */
+.neko-roof-cat {
+  position: absolute;
+  top: -28px;
+  left: 60px;
+  z-index: 5;
+  display: flex;
+  align-items: flex-end;
+  font-size: 1.7rem;
+  user-select: none;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.neko-roof-cat:hover {
+  transform: translateY(-4px) scale(1.15);
+}
+
+.neko-tail-wag {
+  display: inline-block;
+  transform-origin: bottom left;
+  animation: tailWag 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes tailWag {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(15deg); }
+  100% { transform: rotate(-10deg); }
+}
+
+/* 2. Search Bar Peeking Cyber Neko */
+.search-box-container {
+  position: relative;
+}
+
+.neko-peeking-search {
+  position: absolute;
+  top: -22px;
+  right: 18px;
+  z-index: 4;
+  font-size: 0.95rem;
+  user-select: none;
+  background: #FFFFFF;
+  border: 2.5px solid var(--ink-black);
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  padding: 0 0.4rem;
+  color: var(--torii-red);
+  font-family: var(--font-code);
+  font-weight: 700;
+  animation: nekoBlink 4s infinite;
+}
+
+@keyframes nekoBlink {
+  0%, 94%, 100% { transform: translateY(0); }
+  96% { transform: translateY(3px); }
+}
+
+/* 3. Calendar Corner Sleeping Neko */
+.neko-sleeping-calendar {
+  position: absolute;
+  top: -26px;
+  right: 20px;
+  z-index: 5;
+  font-size: 1.35rem;
+  user-select: none;
+  filter: drop-shadow(2px 2px 0px var(--ink-black));
+  cursor: pointer;
+}
+
+.neko-sleeping-calendar::after {
+  content: 'zzz...';
+  position: absolute;
+  top: -12px;
+  right: -10px;
+  font-size: 0.7rem;
+  font-family: var(--font-manga);
+  color: var(--torii-red);
+  animation: zzzFloat 2s ease-in-out infinite;
+}
+
+@keyframes zzzFloat {
+  0% { opacity: 0.4; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-4px); }
+  100% { opacity: 0.4; transform: translateY(-8px); }
+}
+
+/* 4. Undated Tasks Hanging Paws Cat */
+.neko-hanging-undated {
+  position: absolute;
+  top: -24px;
+  left: 280px;
+  z-index: 4;
+  font-size: 1.3rem;
+  user-select: none;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+}
+
+.neko-hanging-undated:hover {
+  transform: rotate(-10deg) scale(1.2);
+}
+
+/* 5. Paw Print on Day Cells Hover */
+.calendar-day:hover::after {
+  content: '🐾';
+  position: absolute;
+  bottom: 4px;
+  right: 6px;
+  font-size: 0.8rem;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Stats Overview Cards */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.stat-card {
+  background: var(--bg-card);
+  border: 2.5px solid var(--ink-black);
+  box-shadow: var(--ink-shadow);
+  border-radius: var(--radius-lg);
+  padding: 1.15rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.stat-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0px var(--ink-black);
+}
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--ink-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  box-shadow: var(--ink-shadow-sm);
+}
+
+.stat-icon.total { background: #FFE8EC; color: var(--peach-pink); }
+.stat-icon.exam { background: #FFE5E7; color: var(--torii-red); }
+.stat-icon.assignment { background: #FFF0E0; color: var(--peach-gold); }
+.stat-icon.undated { background: #E6F7F2; color: var(--bamboo-green); }
+
+.stat-info .stat-value {
+  font-family: var(--font-manga);
+  font-size: 2.2rem;
+  line-height: 1;
+  color: var(--text-main);
+}
+
+.stat-info .stat-label {
+  font-size: 0.825rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.stat-kanji-tag {
+  font-family: var(--font-code);
+  font-size: 0.78rem;
+  color: var(--torii-red);
+}
+
+/* Controls Panel */
+.controls-panel {
+  background: var(--bg-card);
+  border: 2.5px solid var(--ink-black);
+  box-shadow: var(--ink-shadow);
+  border-radius: var(--radius-xl);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: relative;
+}
+
+.controls-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.current-month-display {
+  font-family: var(--font-manga);
+  font-size: 1.8rem;
+  letter-spacing: 0.04em;
+  min-width: 210px;
+  text-align: center;
+  color: var(--ink-black);
+  text-shadow: 1.5px 1.5px 0px #FFD5CC;
+}
+
+.month-kanji-sub {
+  font-size: 0.85rem;
+  font-family: var(--font-kanji);
+  color: var(--torii-red);
+  margin-left: 0.3rem;
+}
+
+.search-box {
+  position: relative;
+  min-width: 260px;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 0.6rem 1rem 0.6rem 2.5rem;
+  background: #FFFFFF;
+  border: 2.5px solid var(--ink-black);
+  border-radius: var(--radius-md);
+  color: var(--text-main);
+  font-family: var(--font-code);
+  font-size: 0.825rem;
+  font-weight: 700;
+  outline: none;
+  box-shadow: var(--ink-shadow-sm);
+  transition: transform var(--transition-fast);
+}
+
+.search-box input:focus {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px var(--ink-black);
+  border-color: var(--peach-pink);
+}
+
+.search-box svg {
+  position: absolute;
+  left: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  fill: var(--text-dim);
+}
+
+/* Touch-Scrollable Filter Chips Bar */
+.filters-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding-top: 1rem;
+  border-top: 2px dashed #E0C8C0;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.filter-label {
+  font-family: var(--font-manga);
+  font-size: 1.15rem;
+  color: var(--torii-red);
+  margin-right: 0.25rem;
+}
+
+.chip {
+  padding: 0.4rem 0.95rem;
+  border-radius: 9999px;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 800;
+  background: #FFFFFF;
+  border: 2px solid var(--ink-black);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  user-select: none;
+  box-shadow: var(--ink-shadow-sm);
+  white-space: nowrap;
+}
+
+.chip:hover, .chip:active {
+  transform: translate(-2px, -2px);
+  box-shadow: 3px 3px 0px var(--ink-black);
+  color: var(--text-main);
+}
+
+.chip.active {
+  background: var(--peach-pink);
+  border-color: var(--ink-black);
+  color: #FFFFFF;
+  font-weight: 800;
+  box-shadow: 3px 3px 0px var(--ink-black);
+}
+
+.chip.chip-exam.active { background: var(--torii-red); color: #FFFFFF; }
+.chip.chip-assignment.active { background: var(--peach-gold); color: #FFFFFF; }
+.chip.chip-class.active { background: var(--peach-pink); color: #FFFFFF; }
+.chip.chip-personal.active { background: var(--bamboo-green); color: #FFFFFF; }
+
+/* Main Calendar Container */
+.calendar-wrapper {
+  background: var(--bg-card);
+  border: 3px solid var(--ink-black);
+  box-shadow: var(--ink-shadow);
+  border-radius: var(--radius-xl);
+  overflow: visible;
+  position: relative;
+  margin-bottom: 2.5rem;
+}
+
+/* Weekday Names Header */
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background: var(--ink-black);
+  border-bottom: 2.5px solid var(--ink-black);
+  text-align: center;
+  border-radius: calc(var(--radius-xl) - 3px) calc(var(--radius-xl) - 3px) 0 0;
+}
+
+.weekday {
+  padding: 0.85rem 0.25rem;
+  font-family: var(--font-manga);
+  font-size: 1.15rem;
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+}
+
+.weekday-kanji {
+  font-family: var(--font-kanji);
+  font-size: 0.75rem;
+  color: var(--manga-yellow);
+}
+
+/* Calendar Grid */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-auto-rows: minmax(115px, 1fr);
+  gap: 2px;
+  background: var(--ink-black);
+  border-radius: 0 0 calc(var(--radius-xl) - 3px) calc(var(--radius-xl) - 3px);
+  overflow: hidden;
+}
+
+/* Day Cell Panel */
+.calendar-day {
+  background: #FFFFFF;
+  padding: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+  position: relative;
+  min-height: 115px;
+}
+
+.calendar-day:hover, .calendar-day:active {
+  background: var(--bg-card-hover);
+  z-index: 2;
+}
+
+.calendar-day.other-month {
+  background: #F7EFEB;
+  opacity: 0.55;
+}
+
+.calendar-day.is-today {
+  background: #FFF0EE;
+}
+
+.calendar-day.is-today::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4.5px;
+  background: var(--torii-red);
+}
+
+.day-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.day-number {
+  font-family: var(--font-manga);
+  font-size: 1.3rem;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-main);
+}
+
+.calendar-day.is-today .day-number {
+  background: var(--torii-red);
+  color: #FFFFFF;
+  border: 1.5px solid var(--ink-black);
+  box-shadow: var(--ink-shadow-sm);
+}
+
+.event-count-badge {
+  font-family: var(--font-manga);
+  font-size: 0.8rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: 9999px;
+  background: var(--peach-pink);
+  color: #FFFFFF;
+  border: 1.5px solid var(--ink-black);
+}
+
+/* Event Preview Items */
+.day-events-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-top: auto;
+  overflow: hidden;
+}
+
+.event-pill {
+  font-size: 0.725rem;
+  font-weight: 800;
+  padding: 0.2rem 0.4rem;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: 1.5px solid var(--ink-black);
+}
+
+.event-pill.type-exam { background: var(--type-exam-bg); color: var(--torii-red); border-left: 4px solid var(--torii-red); }
+.event-pill.type-assignment { background: var(--type-assignment-bg); color: #D97706; border-left: 4px solid var(--peach-gold); }
+.event-pill.type-class { background: var(--type-class-bg); color: var(--peach-pink); border-left: 4px solid var(--peach-pink); }
+.event-pill.type-personal { background: var(--type-personal-bg); color: #059669; border-left: 4px solid var(--bamboo-green); }
+
+.event-dots-row {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+  margin-top: 0.25rem;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--ink-black);
+  display: inline-block;
+}
+
+.dot-exam { background-color: var(--torii-red); }
+.dot-assignment { background-color: var(--peach-gold); }
+.dot-class { background-color: var(--peach-pink); }
+.dot-personal { background-color: var(--bamboo-green); }
+
+/* Agenda / Mobile List View */
+.agenda-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.agenda-day-group {
+  background: var(--bg-card);
+  border: 2.5px solid var(--ink-black);
+  box-shadow: var(--ink-shadow);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+}
+
+.agenda-date-header {
+  font-family: var(--font-manga);
+  font-size: 1.45rem;
+  color: var(--torii-red);
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px dashed #E0C8C0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.event-card {
+  background: #FFFFFF;
+  border: 2.5px solid var(--ink-black);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.15rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: var(--ink-shadow-sm);
+  transition: transform var(--transition-fast);
+}
+
+.event-card:hover, .event-card:active {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0px var(--ink-black);
+}
+
+.event-card-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.event-title {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: var(--text-main);
+}
+
+.event-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.78rem;
+  font-weight: 800;
+  border: 1.5px solid var(--ink-black);
+}
+
+.badge-type.type-exam { background: var(--torii-red); color: #FFFFFF; }
+.badge-type.type-assignment { background: var(--peach-gold); color: #FFFFFF; }
+.badge-type.type-class { background: var(--peach-pink); color: #FFFFFF; }
+.badge-type.type-personal { background: var(--bamboo-green); color: #FFFFFF; }
+
+.badge-subject {
+  background: #FFF2EC;
+  color: var(--text-main);
+  border: 1.5px solid var(--ink-black);
+  font-family: var(--font-code);
+  font-size: 0.75rem;
+}
+
+.event-desc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* Undated Section */
+.undated-section {
+  margin-top: 3rem;
+  position: relative;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.section-title {
+  font-family: var(--font-manga);
+  font-size: 1.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-main);
+}
+
+.undated-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 1.25rem;
+}
+
+.undated-card {
+  background: var(--bg-card);
+  border: 2.5px solid var(--ink-black);
+  box-shadow: var(--ink-shadow);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  transition: transform var(--transition-fast);
+}
+
+.undated-card:hover, .undated-card:active {
+  transform: translate(-3px, -3px);
+  box-shadow: 6px 6px 0px var(--ink-black);
+}
+
+/* ==========================================================================
+   ⚔️ ANIMATED SAMURAI CSS EMPTY STATE ("NO QUESTS SCHEDULED")
+   ========================================================================== */
+
+.samurai-empty-card {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  background: #FFFFFF;
+  border: 3px solid var(--ink-black);
+  box-shadow: var(--ink-shadow);
+  border-radius: var(--radius-xl);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.samurai-empty-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--torii-red), var(--peach-pink), var(--peach-gold));
+}
+
+/* Animated Katana Slash Badge */
+.samurai-avatar-wrapper {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.samurai-emblem-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid var(--ink-black);
+  background: linear-gradient(135deg, #FFE8EC, #FFF0E0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.4rem;
+  box-shadow: var(--ink-shadow-sm);
+  position: relative;
+  z-index: 2;
+}
+
+/* Animated Katana Blade Slash Line */
+.katana-slash-blade {
+  position: absolute;
+  top: 50%;
+  left: -20%;
+  width: 140%;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #FFFFFF, var(--torii-red), #FFFFFF, transparent);
+  box-shadow: 0 0 12px var(--torii-red);
+  transform: translateY(-50%) rotate(-35deg) scaleX(0);
+  z-index: 3;
+  pointer-events: none;
+  animation: katanaSlash 2.8s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes katanaSlash {
+  0% { transform: translateY(-50%) rotate(-35deg) scaleX(0); opacity: 0; }
+  15% { transform: translateY(-50%) rotate(-35deg) scaleX(1); opacity: 1; }
+  40% { transform: translateY(-50%) rotate(-35deg) scaleX(1); opacity: 0.8; }
+  60% { transform: translateY(-50%) rotate(-35deg) scaleX(0); opacity: 0; }
+  100% { transform: translateY(-50%) rotate(-35deg) scaleX(0); opacity: 0; }
+}
+
+.samurai-empty-title {
+  font-family: var(--font-manga);
+  font-size: 2.2rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-black);
+  text-shadow: 1.5px 1.5px 0px #FFD5CC;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.samurai-empty-desc {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.samurai-sound-callout {
+  font-family: var(--font-code);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--torii-red);
+  background: var(--manga-yellow);
+  padding: 0.15rem 0.6rem;
+  border: 2px solid var(--ink-black);
+  box-shadow: 2px 2px 0px var(--ink-black);
+  transform: rotate(-4deg);
+  display: inline-block;
+}
+
+/* Modal Dialog */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(26, 17, 20, 0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-normal), visibility var(--transition-normal);
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-container {
+  background: #FFFFFF;
+  border: 3.5px solid var(--ink-black);
+  border-radius: var(--radius-xl);
+  width: 100%;
+  max-width: 600px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 8px 8px 0px var(--ink-black);
+  transform: scale(0.95) translateY(12px);
+  transition: transform var(--transition-normal);
+  overflow: hidden;
+}
+
+.modal-overlay.active .modal-container {
+  transform: scale(1) translateY(0);
+}
+
+.modal-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 3px solid var(--ink-black);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--peach-pink);
+  color: #FFFFFF;
+}
+
+.modal-title-group h3 {
+  font-family: var(--font-manga);
+  font-size: 1.7rem;
+  color: #FFFFFF;
+  text-shadow: 1.5px 1.5px 0px var(--ink-black);
+}
+
+.modal-title-group p {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #FFFFFF;
+}
+
+.close-btn {
+  background: #FFFFFF;
+  border: 2px solid var(--ink-black);
+  color: var(--ink-black);
+  cursor: pointer;
+  padding: 0.4rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--ink-shadow-sm);
+}
+
+.modal-body {
+  padding: 1.25rem 1.5rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Error Banner */
+.error-banner {
+  background: var(--torii-red);
+  border: 2.5px solid var(--ink-black);
+  color: #FFFFFF;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 1.5rem;
+  box-shadow: var(--ink-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* Footer */
+.app-footer {
+  margin-top: 3.5rem;
+  padding-top: 2rem;
+  border-top: 2.5px dashed #E0C8C0;
+  text-align: center;
+  font-size: 1rem;
+  color: var(--torii-red);
+  font-family: var(--font-manga);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .app-container {
+    padding: 0.75rem 0.75rem 3rem 0.75rem;
+  }
+
+  .manga-hero-banner {
+    padding: 1.25rem 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .manga-torii-logo {
+    width: 64px;
+    height: 64px;
+  }
+
+  .brand-title h1 {
+    font-size: 2.2rem;
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .header-actions .btn {
+    flex: 1;
+    min-width: 110px;
+    font-size: 0.825rem;
+    padding: 0.55rem 0.75rem;
+  }
+
+  .controls-panel {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .controls-top {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.85rem;
+  }
+
+  .nav-controls {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .current-month-display {
+    font-size: 1.4rem;
+    min-width: auto;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+
+  .filters-row {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .filters-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-group {
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+  }
+
+  .calendar-grid {
+    grid-auto-rows: minmax(72px, 1fr);
+  }
+
+  .calendar-day {
+    padding: 0.25rem;
+    min-height: 72px;
+  }
+
+  .day-number {
+    font-size: 0.95rem;
+    width: 24px;
+    height: 24px;
+  }
+
+  .event-count-badge {
+    font-size: 0.7rem;
+    padding: 0.05rem 0.35rem;
+  }
+
+  .event-pill {
+    font-size: 0.65rem;
+    padding: 0.12rem 0.25rem;
+  }
+
+  .weekday {
+    font-size: 0.85rem;
+    padding: 0.5rem 0.1rem;
+  }
+
+  .undated-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .event-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .modal-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .modal-container {
+    max-width: 100%;
+    max-height: 80vh;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    border-bottom: none;
+    transform: translateY(100%);
+  }
+
+  .modal-overlay.active .modal-container {
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 400px) {
+  .brand-title h1 {
+    font-size: 1.8rem;
+  }
+
+  .calendar-grid {
+    grid-auto-rows: minmax(62px, 1fr);
+  }
+
+  .calendar-day {
+    min-height: 62px;
+  }
+
+  .day-events-preview .event-pill {
+    display: none;
+  }
+}
