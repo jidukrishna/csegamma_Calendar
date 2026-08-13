@@ -23,7 +23,7 @@
     "date": "2026-08-03",
     "time": "14:00",
     "type": "personal",
-    "subject": "",
+    "subject": null,
     "description": "Submit PDF report to LMS before deadline."
   },
   {
@@ -50,7 +50,7 @@
     "date": "2026-08-05",
     "time": "15:30",
     "type": "personal",
-    "subject": "",
+    "subject": null,
     "description": "Review key concepts and solved example questions."
   },
   {
@@ -59,7 +59,7 @@
     "date": "2026-08-06",
     "time": "10:00",
     "type": "personal",
-    "subject": "",
+    "subject": null,
     "description": "Mandatory attendance for all CSE Gamma students."
   },
   {
@@ -122,7 +122,7 @@
     "date": "2026-08-10",
     "time": "16:45",
     "type": "personal",
-    "subject": "",
+    "subject": null,
     "description": "Preparation for upcoming end-semester examinations."
   },
   {
@@ -131,7 +131,7 @@
     "date": "2026-08-11",
     "time": "09:15",
     "type": "personal",
-    "subject": "",
+    "subject": null,
     "description": "Mandatory attendance for all CSE Gamma students."
   },
   {
@@ -356,7 +356,7 @@
     "date": "2026-09-01",
     "time": null,
     "type": "personal",
-    "subject": "",
+    "subject": null,
     "description": "Chapters 1 to 4 coverage. Room 304."
   },
   {
@@ -365,7 +365,7 @@
     "date": "2026-09-02",
     "time": "14:00",
     "type": "personal",
-    "subject": "",
+    "subject": null,
     "description": "Bring laptop with full charge and environment prepared."
   },
   {
@@ -383,7 +383,7 @@
     "date": "2026-09-05",
     "time": "08:30",
     "type": "personal",
-    "subject": "",
+    "subject": null,
     "description": "Mandatory attendance for all CSE Gamma students."
   },
   {
@@ -392,7 +392,7 @@
     "date": "2026-09-06",
     "time": null,
     "type": "personal",
-    "subject": "",
+    "subject": null,
     "description": "Chapters 1 to 4 coverage. Room 304."
   },
   {
@@ -410,7 +410,7 @@
     "date": "2026-09-08",
     "time": "08:30",
     "type": "personal",
-    "subject": "",
+    "subject": null,
     "description": "Mandatory attendance for all CSE Gamma students."
   },
   {
@@ -419,7 +419,7 @@
     "date": "2026-09-08",
     "time": "18:00",
     "type": "personal",
-    "subject": "",
+    "subject": null,
     "description": "Preparation for upcoming end-semester examinations."
   },
   {
@@ -437,7 +437,7 @@
     "date": "2026-09-10",
     "time": "08:30",
     "type": "personal",
-    "subject": "",
+    "subject": null,
     "description": "Collaborative group assignment, submit via GitHub repository."
   },
   {
@@ -455,7 +455,7 @@
     "date": "2026-09-11",
     "time": null,
     "type": "personal",
-    "subject": "",
+    "subject": null,
     "description": "Submit PDF report to LMS before deadline."
   },
   {
@@ -581,7 +581,7 @@
     "date": "2026-09-23",
     "time": "14:00",
     "type": "personal",
-    "subject": "",
+    "subject": null,
     "description": "Submit PDF report to LMS before deadline."
   },
   {
@@ -590,7 +590,7 @@
     "date": "2026-09-24",
     "time": "11:15",
     "type": "personal",
-    "subject": "",
+    "subject": null,
     "description": "Submit PDF report to LMS before deadline."
   },
   {
@@ -626,7 +626,7 @@
     "date": "2026-09-28",
     "time": "14:00",
     "type": "personal",
-    "subject": "",
+    "subject": null,
     "description": "Chapters 1 to 4 coverage. Room 304."
   },
   {
@@ -842,7 +842,7 @@
     "date": "2026-10-21",
     "time": "16:45",
     "type": "personal",
-    "subject": "",
+    "subject": null,
     "description": "Mandatory attendance for all CSE Gamma students."
   },
   {
@@ -905,7 +905,7 @@
     "date": "2026-10-26",
     "time": "11:15",
     "type": "personal",
-    "subject": "",
+    "subject": null,
     "description": "Bring laptop with full charge and environment prepared."
   },
   {
@@ -923,7 +923,7 @@
     "date": "2026-10-29",
     "time": "14:00",
     "type": "personal",
-    "subject": "",
+    "subject": null,
     "description": "Collaborative group assignment, submit via GitHub repository."
   },
   {
@@ -954,39 +954,12 @@
     "description": "Collaborative group assignment, submit via GitHub repository."
   },
   {
-    "id": "e107",
-    "title": "Pending: General Study Task",
-    "date": null,
-    "time": null,
-    "type": "personal",
-    "subject": "",
-    "description": "Announced in lecture, official deadline pending release."
-  },
-  {
-    "id": "e108",
-    "title": "Pending: AI402 Lab Assignment",
-    "date": null,
-    "time": null,
-    "type": "assignment",
-    "subject": "AI402",
-    "description": "Announced in lecture, official deadline pending release."
-  },
-  {
-    "id": "e109",
-    "title": "Pending: NETWORKS Homework 4",
-    "date": null,
-    "time": null,
-    "type": "assignment",
-    "subject": "NETWORKS",
-    "description": "Announced in lecture, official deadline pending release."
-  },
-  {
     "id": "e110",
     "title": "Pending: General Study Task",
     "date": null,
     "time": null,
     "type": "personal",
-    "subject": "",
+    "subject": null,
     "description": "Announced in lecture, official deadline pending release."
   },
   {
@@ -1013,7 +986,7 @@
     "date": null,
     "time": null,
     "type": "personal",
-    "subject": "",
+    "subject": null,
     "description": "Announced in lecture, official deadline pending release."
   },
   {
@@ -1031,7 +1004,7 @@
     "date": null,
     "time": null,
     "type": "personal",
-    "subject": "",
+    "subject": null,
     "description": "Announced in lecture, official deadline pending release."
   },
   {
@@ -1040,7 +1013,7 @@
     "date": null,
     "time": null,
     "type": "personal",
-    "subject": "",
+    "subject": null,
     "description": "Announced in lecture, official deadline pending release."
   }
 ]
