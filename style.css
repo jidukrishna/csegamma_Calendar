@@ -535,8 +535,8 @@ body {
 .neko-sleeping-calendar {
   position: absolute;
   top: -24px;
-  right: 20px;
-  z-index: 5;
+  left: 180px;
+  z-index: 3;
   font-size: 1.15rem;
   user-select: none;
   cursor: pointer;
@@ -1146,6 +1146,15 @@ body {
 
   .brand-title {
     font-size: 1.25rem;
+  }
+
+  /* Sleeping Neko positioning & click-through isolation */
+  .neko-sleeping-calendar {
+    top: -20px;
+    left: auto;
+    right: 12px;
+    font-size: 0.95rem;
+    pointer-events: none;
   }
 
   /* Spacious Accent Theme Picker on Mobile */
