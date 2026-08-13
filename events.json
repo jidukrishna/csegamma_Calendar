@@ -25,5 +25,14 @@
     "type": "exam",
     "subject": "AAD",
     "description": ""
+  },
+  {
+    "id": "e_1786651591147",
+    "title": "aam start",
+    "date": "2026-09-02",
+    "time": null,
+    "type": "exam",
+    "subject": null,
+    "description": ""
   }
 ]
