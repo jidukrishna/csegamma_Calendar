@@ -164,10 +164,10 @@ body {
   box-shadow: 0 0 8px currentColor;
 }
 
-/* 🐾 INTERACTIVE PETTING ROOF CAT GIF */
+/* 🐾 DANCING CAT MASCOT GIF */
 .neko-roof-cat {
   position: absolute;
-  top: -28px;
+  top: -32px;
   left: 35px;
   z-index: 5;
   display: flex;
@@ -178,10 +178,10 @@ body {
 }
 
 .neko-gif-img {
-  width: 36px;
-  height: 36px;
+  height: 42px;
+  width: auto;
   object-fit: contain;
-  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6));
   pointer-events: auto;
 }
 
