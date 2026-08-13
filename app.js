@@ -1,5 +1,5 @@
 /**
- * CSE Gamma — Minimalist Dark Class Calendar Engine
+ * CSE Gamma — Minimalist Dark Neko Class Calendar Engine 🐾
  */
 
 // Application State
@@ -59,7 +59,7 @@ function getTypeTag(type) {
   switch ((type || '').toLowerCase()) {
     case 'exam': return { label: 'Exam', icon: '⚔️' };
     case 'assignment': return { label: 'Assignment', icon: '📜' };
-    case 'class': return { label: 'Class', icon: '📚' };
+    case 'class': return { label: 'Class', icon: '🐾' };
     case 'personal': return { label: 'Personal', icon: '🍃' };
     default: return { label: type || 'Event', icon: '📌' };
   }
@@ -89,14 +89,15 @@ function formatDateLong(dateStr) {
   });
 }
 
-// Helper: Minimal Empty State Builder
+// Helper: Minimal Neko Empty State Builder
 function createMinimalEmptyStateHtml(titleText, bodyText) {
   return `
     <div class="minimal-empty-state">
+      <div class="minimal-neko-avatar">🐾 ฅ(≚ᄌ≚)ฅ 💤</div>
       <h4 class="minimal-empty-title">${titleText}</h4>
       <p class="minimal-empty-desc">${bodyText}</p>
       <button class="btn btn-sm reset-filters-btn" style="margin-top: 0.5rem;">
-        Reset Filters
+        Reset Filters 🐾
       </button>
     </div>
   `;
@@ -392,7 +393,7 @@ function renderAgendaView() {
       dayGroup.className = 'agenda-day-group';
       dayGroup.innerHTML = `
         <div class="agenda-date-header">
-          <span>${formatDateLong(dateStr)}</span>
+          <span>${formatDateLong(dateStr)} 🐾</span>
           <span class="badge badge-subject">${filtered.length} event${filtered.length > 1 ? 's' : ''}</span>
         </div>
         <div class="agenda-events-list">
@@ -405,7 +406,7 @@ function renderAgendaView() {
 
   if (totalFiltered === 0) {
     wrapper.innerHTML = createMinimalEmptyStateHtml(
-      "No Events Scheduled",
+      "Neko is Sleeping 🐾 💤",
       `No events match your current filter selections for ${MONTH_NAMES[state.currentMonth]} ${state.currentYear}.`
     );
   }
@@ -423,7 +424,7 @@ function renderUndatedSection(undatedList) {
       elements.undatedSection.style.display = 'block';
       container.innerHTML = `
         <div style="grid-column: 1 / -1;">
-          ${createMinimalEmptyStateHtml("No Pending Tasks", "All task items match current active filters.")}
+          ${createMinimalEmptyStateHtml("All Quiet at the Dojo 🐾", "No pending tasks match the current active filters.")}
         </div>
       `;
     }
@@ -472,12 +473,12 @@ function openDayDetailModal(dateStr, rawDayEvents) {
   state.selectedDateStr = dateStr;
   const filteredEvents = rawDayEvents.filter(filterEvent);
 
-  elements.modalDateTitle.textContent = formatDateLong(dateStr);
+  elements.modalDateTitle.textContent = `${formatDateLong(dateStr)} 🐾`;
   elements.modalEventCount.textContent = `${filteredEvents.length} event${filteredEvents.length === 1 ? '' : 's'} scheduled`;
 
   if (filteredEvents.length === 0) {
     elements.modalEventsList.innerHTML = createMinimalEmptyStateHtml(
-      "No Events",
+      "Neko Rest Day 🐾 💤",
       "No events scheduled for this specific date."
     );
   } else {

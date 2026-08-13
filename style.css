@@ -1,5 +1,5 @@
 /* ==========================================================================
-   CSE Gamma — Clean Minimalist Dark Theme
+   CSE Gamma — Clean Minimalist Dark Neko Theme 🐾
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@500;600&family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap');
@@ -103,6 +103,7 @@ body {
   flex-wrap: wrap;
   gap: 1.25rem;
   box-shadow: var(--shadow-md);
+  position: relative;
 }
 
 .brand-group {
@@ -130,6 +131,9 @@ body {
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .header-actions {
@@ -205,12 +209,22 @@ body {
   padding: 1.15rem 1.25rem;
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.4rem;
   transition: border-color var(--transition);
 }
 
 .stat-card:hover {
   border-color: rgba(240, 246, 252, 0.2);
+}
+
+.stat-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.stat-icon {
+  font-size: 0.9rem;
 }
 
 .stat-value {
@@ -398,6 +412,16 @@ body {
 
 .calendar-day:hover {
   background: var(--bg-card-hover);
+}
+
+.calendar-day:hover::after {
+  content: '🐾';
+  position: absolute;
+  bottom: 4px;
+  right: 6px;
+  font-size: 0.7rem;
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 .calendar-day.other-month {
@@ -629,7 +653,7 @@ body {
   border-color: rgba(240, 246, 252, 0.25);
 }
 
-/* Minimalist Empty State */
+/* Minimalist Neko Empty State */
 .minimal-empty-state {
   text-align: center;
   padding: 2.5rem 1.5rem;
@@ -641,6 +665,11 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 0.6rem;
+}
+
+.minimal-neko-avatar {
+  font-size: 2rem;
+  margin-bottom: 0.2rem;
 }
 
 .minimal-empty-title {
