@@ -164,18 +164,24 @@ body {
   box-shadow: 0 0 8px currentColor;
 }
 
-/* 🐈 INTERACTIVE PETTING ROOF CAT */
+/* 🐾 INTERACTIVE PETTING ROOF CAT */
 .neko-roof-cat {
   position: absolute;
-  top: -26px;
-  left: 45px;
+  top: -22px;
+  left: 40px;
   z-index: 5;
   display: flex;
-  align-items: flex-end;
-  font-size: 1.5rem;
+  align-items: center;
   user-select: none;
   cursor: pointer;
-  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  color: var(--accent-primary);
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.3s ease;
+}
+
+.neko-icon-svg {
+  width: 28px;
+  height: 28px;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.6));
 }
 
 .neko-roof-cat:hover {
