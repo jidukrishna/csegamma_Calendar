@@ -115,7 +115,7 @@ body {
   z-index: 1;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 1.75rem 1.5rem 4rem 1.5rem;
+  padding: 3rem 1.5rem 4rem 1.5rem;
 }
 
 /* Minimalist App Header */
@@ -1075,7 +1075,7 @@ body {
   .app-container {
     display: flex;
     flex-direction: column;
-    padding: 1.65rem 0.65rem 1.25rem 0.65rem;
+    padding: 2.75rem 0.65rem 1.25rem 0.65rem;
   }
 
   /* Flex Reordering: Calendar Card (with attached Controls Header) comes FIRST before Stats */
