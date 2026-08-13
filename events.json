@@ -25,5 +25,41 @@
     "type": "exam",
     "subject": null,
     "description": ""
+  },
+  {
+    "id": "e_1786657084161",
+    "title": "mid sem feedback",
+    "date": null,
+    "time": null,
+    "type": "class",
+    "subject": null,
+    "description": ""
+  },
+  {
+    "id": "e_1786657120293",
+    "title": "nptel registration",
+    "date": "2026-08-14",
+    "time": null,
+    "type": "class",
+    "subject": null,
+    "description": ""
+  },
+  {
+    "id": "e_1786657154314",
+    "title": "nptel assignment",
+    "date": "2026-08-19",
+    "time": null,
+    "type": "assignment",
+    "subject": null,
+    "description": ""
+  },
+  {
+    "id": "e_1786657220229",
+    "title": "aad lab exam",
+    "date": "2026-08-19",
+    "time": null,
+    "type": "exam",
+    "subject": null,
+    "description": "1. insertion vs merge sort\n2. insertion vs quick sort\n3. min max seq vs min max recursive"
   }
 ]
