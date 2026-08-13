@@ -3,7 +3,37 @@
 ## 1. Goal
 A Flutter app for adding/editing/deleting events, which commits changes directly to `events.json` in the GitHub repo via the GitHub REST API. This is the "push" side; the static site (separate plan) is the "read" side.
 
-## 2. Screens & Mobile UX Architecture
+## 2. Target Repository File & GitHub Push API Key Setup
+
+### Target File in Repository
+- **Repository**: `jidukrishna/csegamma_Calendar` (Branch: `main`)
+- **Target File Path**: `events.json` (Root directory)
+- **Read Endpoint (Public Raw)**: `https://raw.githubusercontent.com/jidukrishna/csegamma_Calendar/main/events.json`
+- **Write Endpoint (GitHub REST API)**: `https://api.github.com/repos/jidukrishna/csegamma_Calendar/contents/events.json`
+
+### Where & How to Get the GitHub Push API Key (Personal Access Token)
+To allow the mobile app to commit event additions, edits, and deletions directly to `events.json`:
+
+1. **Open GitHub Developer Settings**:
+   - Go to [GitHub Fine-Grained Personal Access Tokens](https://github.com/settings/tokens?type=beta).
+2. **Generate New Token**:
+   - Click **"Generate new token"**.
+   - Set **Token name**: `Neko Calendar Mobile App`.
+   - Set **Expiration**: 90 days (or desired duration).
+3. **Select Repository Access**:
+   - Under **Repository access**, select **"Only select repositories"**.
+   - Choose repository: `jidukrishna/csegamma_Calendar`.
+4. **Set Contents Permissions**:
+   - Expand **Repository permissions**.
+   - Scroll to **Contents** -> Set permission to **Read and write**.
+5. **Generate & Copy Token**:
+   - Click **Generate token**.
+   - Copy the token secret (starts with `github_pat_...`).
+6. **Input into App Settings**:
+   - Open Mobile App -> Go to **Settings screen**.
+   - Paste token into **GitHub Push API Key** field and save securely in device keychain via `flutter_secure_storage`.
+
+## 3. Screens & Mobile UX Architecture
 
 1. **Calendar View (Home & Primary Screen)**
    - **Integrated Month Header Card**: The month selector (`08/2026`), navigation arrows (`<`, `>`), `Today 🐾` button, search bar, and subject/type filter chips are attached directly to the top of the calendar card.
@@ -34,7 +64,7 @@ A Flutter app for adding/editing/deleting events, which commits changes directly
    - **Neko Theme Accent Picker**: Toggle between `Cyan` (#58A6FF), `Crimson` (#E63946), `Purple` (#A855F7), and `Emerald` (#10B981) accent glow colors.
    - **Stationary Tenor Dancing Cat Mascot (`neko.gif`)**: Decorative mascot banner with generous headroom and isolated touch controls so navigation buttons are never obstructed.
 
-## 3. Packages
+## 4. Packages
 
 | Package | Purpose |
 |---|---|
@@ -45,7 +75,7 @@ A Flutter app for adding/editing/deleting events, which commits changes directly
 | `intl` | Date formatting (`YYYY-MM-DD` storage, `DD/MM/YYYY` display) |
 | `provider` or `riverpod` | State management and instant real-time DOM/UI re-renders |
 
-## 4. Data Model (Dart)
+## 5. Data Model (Dart)
 
 ```dart
 class ClassEvent {
@@ -76,28 +106,29 @@ class ClassEvent {
 
 Mirrors the web schema exactly. `date: null` represents pending/undated tasks. Presentation layer formats dates as `DD/MM/YYYY`.
 
-## 5. GitHub Sync Logic
+## 6. GitHub Sync Logic
 
 GitHub's Contents API requires the file's current SHA to update it:
 
 **Flow for every save:**
-1. `GET /repos/{owner}/{repo}/contents/events.json` → returns base64 content + `sha`
+1. `GET /repos/jidukrishna/csegamma_Calendar/contents/events.json` → returns base64 content + `sha`
 2. Decode base64 → parse JSON array → decode into `List<ClassEvent>`
 3. Apply local change (add/edit/delete by `id`)
 4. Re-encode array → base64
-5. `PUT /repos/{owner}/{repo}/contents/events.json` with `{ message, content, sha, branch }`
+5. `PUT /repos/jidukrishna/csegamma_Calendar/contents/events.json` with `{ message, content, sha, branch }`
 6. If GitHub returns 409 (SHA mismatch) → re-fetch, re-apply, and retry once
 
-**Auth:** `Authorization: Bearer <PAT>` header. Scoped to `contents:write` on `csegamma_Calendar`.
+**Auth:** `Authorization: Bearer <github_pat_...>` header. Scoped to `contents:write` on `csegamma_Calendar`.
 
-## 6. Offline Handling & Instant Feedback
+## 7. Offline Handling & Instant Feedback
 - Maintain a local queue of unsynced mutations
 - On save/delete while offline: apply optimistically to local UI state immediately, mark as "pending sync"
 - On reconnect: process queue sequentially using the SHA-based GitHub API flow
 - Show sync status indicator (synced / pending / error)
 
-## 7. Testing Checklist
-- [ ] Add event → updates `events.json` in GitHub repo within seconds
+## 8. Testing Checklist
+- [ ] PAT input saved securely via `flutter_secure_storage`
+- [ ] Add event → updates `events.json` in `jidukrishna/csegamma_Calendar` repo within seconds
 - [ ] Delete event → instant real-time removal from open day detail modal and grid
 - [ ] Edit event → correct entry updated by `id` without duplication
 - [ ] Date picker widget displays date as `DD/MM/YYYY` while storing `YYYY-MM-DD`
@@ -108,13 +139,13 @@ GitHub's Contents API requires the file's current SHA to update it:
 - [ ] Undated tasks (`date: null`) display under "Pending & Undated Tasks" section
 - [ ] Accent color picker updates UI theme color (`Cyan`, `Crimson`, `Purple`, `Emerald`)
 
-## 8. Build Order
+## 9. Build Order
 1. Local-only Flutter prototype: grid, day detail modal, instant deletion, add quest form
 2. Wire up GET (`events.json` fetch from GitHub repo)
 3. Wire up PUT (add/edit/delete sync)
 4. Add SHA conflict retry and offline queue
 5. Polish: attached month header UI, accent color picker, stationary dancing cat mascot, compact mobile stats bar
 
-## 9. Distribution
+## 10. Distribution
 - Android: sideload APK build
 - iOS: TestFlight or local Xcode build
