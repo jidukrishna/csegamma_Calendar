@@ -1,10 +1,12 @@
 /**
  * CSE Gamma — Minimalist Dark Neko Class Calendar Engine 🐾
+ * Features: Accent Color Picker, Interactive Neko Petting Audio/Bubbles, 3D Card Physics & Custom Quests
  */
 
 // Application State
 const state = {
   events: [],
+  customEvents: [],
   datedEvents: [],
   undatedEvents: [],
   eventsByDate: new Map(),
@@ -15,8 +17,17 @@ const state = {
   searchQuery: '',
   activeView: 'grid', // 'grid' or 'list'
   selectedDateStr: null,
+  activeAccent: 'cyan',
   isLoading: true,
   error: null
+};
+
+// Accent Palettes Map
+const ACCENT_PALETTES = {
+  cyan: { primary: '#58A6FF', bg: 'rgba(88, 166, 255, 0.12)' },
+  crimson: { primary: '#E63946', bg: 'rgba(230, 57, 70, 0.14)' },
+  purple: { primary: '#A855F7', bg: 'rgba(168, 85, 247, 0.14)' },
+  emerald: { primary: '#10B981', bg: 'rgba(16, 185, 129, 0.14)' }
 };
 
 // Month Names
@@ -40,11 +51,21 @@ const elements = {
   todayBtn: document.getElementById('today-btn'),
   viewToggleBtn: document.getElementById('view-toggle-btn'),
   exportIcsBtn: document.getElementById('export-ics-btn'),
+  addQuestBtn: document.getElementById('add-quest-btn'),
   dayModal: document.getElementById('day-modal'),
   modalDateTitle: document.getElementById('modal-date-title'),
   modalEventCount: document.getElementById('modal-event-count'),
   modalEventsList: document.getElementById('modal-events-list'),
   modalCloseBtn: document.getElementById('modal-close-btn'),
+  addQuestModal: document.getElementById('add-quest-modal'),
+  addQuestForm: document.getElementById('add-quest-form'),
+  addModalCloseBtn: document.getElementById('add-modal-close-btn'),
+  addModalCancelBtn: document.getElementById('add-modal-cancel-btn'),
+  nekoRoofCat: document.getElementById('neko-roof-cat'),
+  roofCatBubble: document.getElementById('roof-cat-bubble'),
+  nekoPeekingSearch: document.getElementById('neko-peeking-search'),
+  nekoSleepingCalendar: document.getElementById('neko-sleeping-calendar'),
+  calendarCatBubble: document.getElementById('calendar-cat-bubble'),
   errorBanner: document.getElementById('error-banner'),
   errorMessage: document.getElementById('error-message'),
   retryBtn: document.getElementById('retry-btn'),
@@ -53,6 +74,154 @@ const elements = {
   statTotalAssignments: document.getElementById('stat-total-assignments'),
   statTotalUndated: document.getElementById('stat-total-undated')
 };
+
+// 🎨 Feature 1: Accent Switcher Engine
+function initAccentPicker() {
+  const savedAccent = localStorage.getItem('cse_gamma_accent_color') || 'cyan';
+  setAccentColor(savedAccent);
+
+  document.querySelectorAll('.accent-dot').forEach(dot => {
+    dot.addEventListener('click', () => {
+      const colorKey = dot.dataset.color;
+      setAccentColor(colorKey);
+    });
+  });
+}
+
+function setAccentColor(colorKey) {
+  const palette = ACCENT_PALETTES[colorKey] || ACCENT_PALETTES.cyan;
+  state.activeAccent = colorKey;
+
+  document.documentElement.style.setProperty('--accent-primary', palette.primary);
+  document.documentElement.style.setProperty('--accent-primary-bg', palette.bg);
+
+  document.querySelectorAll('.accent-dot').forEach(dot => {
+    dot.classList.toggle('active', dot.dataset.color === colorKey);
+  });
+
+  localStorage.setItem('cse_gamma_accent_color', colorKey);
+}
+
+// Web Audio API Purr Sound Synthesizer 🎵
+function playPurrSound() {
+  try {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContext) return;
+    const ctx = new AudioContext();
+    
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(140, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(70, ctx.currentTime + 0.35);
+
+    gain.gain.setValueAtTime(0.12, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.35);
+
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    osc.start();
+    osc.stop(ctx.currentTime + 0.35);
+  } catch (e) {
+    // Audio Context not allowed before user gesture
+  }
+}
+
+// Interactive Neko Petting Handler
+function initPettingSystem() {
+  const purrPhrases = ["Purrr... 🐾", "nya~ 🐾", "MEOW! 🐾", "ฅ^•ﻌ•^ฅ", "Squeak! 🐾"];
+
+  if (elements.nekoRoofCat) {
+    elements.nekoRoofCat.addEventListener('click', () => {
+      playPurrSound();
+      const phrase = purrPhrases[Math.floor(Math.random() * purrPhrases.length)];
+      elements.roofCatBubble.textContent = phrase;
+      elements.nekoRoofCat.classList.add('petting');
+      elements.roofCatBubble.classList.add('show');
+
+      setTimeout(() => {
+        elements.nekoRoofCat.classList.remove('petting');
+        elements.roofCatBubble.classList.remove('show');
+      }, 1600);
+    });
+  }
+
+  if (elements.nekoSleepingCalendar) {
+    elements.nekoSleepingCalendar.addEventListener('click', () => {
+      playPurrSound();
+      const phrase = purrPhrases[Math.floor(Math.random() * purrPhrases.length)];
+      elements.calendarCatBubble.textContent = phrase;
+      elements.calendarCatBubble.classList.add('show');
+
+      setTimeout(() => {
+        elements.calendarCatBubble.classList.remove('show');
+      }, 1600);
+    });
+  }
+
+  if (elements.nekoPeekingSearch) {
+    elements.nekoPeekingSearch.addEventListener('click', () => {
+      playPurrSound();
+    });
+  }
+}
+
+// 3D Card Hover Physics Calculator
+function init3DTiltPhysics() {
+  document.addEventListener('mousemove', (e) => {
+    const cards = document.querySelectorAll('.stat-card, .undated-card, .event-card');
+    cards.forEach(card => {
+      const rect = card.getBoundingClientRect();
+      if (
+        e.clientX >= rect.left &&
+        e.clientX <= rect.right &&
+        e.clientY >= rect.top &&
+        e.clientY <= rect.bottom
+      ) {
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -6;
+        const rotateY = ((x - centerX) / centerX) * 6;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-2px)`;
+      } else {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+      }
+    });
+  });
+}
+
+// LocalStorage Custom Events Engine
+function loadCustomEventsFromStorage() {
+  try {
+    const raw = localStorage.getItem('cse_gamma_custom_events');
+    return raw ? JSON.parse(raw) : [];
+  } catch (e) {
+    console.error('Error loading custom events from localStorage:', e);
+    return [];
+  }
+}
+
+function saveCustomEventsToStorage(events) {
+  try {
+    localStorage.setItem('cse_gamma_custom_events', JSON.stringify(events));
+  } catch (e) {
+    console.error('Error saving custom events to localStorage:', e);
+  }
+}
+
+function deleteCustomEvent(id) {
+  state.customEvents = state.customEvents.filter(e => e.id !== id);
+  saveCustomEventsToStorage(state.customEvents);
+  processEvents();
+  renderSubjectFilterChips();
+  renderStats();
+  renderView();
+}
 
 // Category Tags
 function getTypeTag(type) {
@@ -89,11 +258,10 @@ function formatDateLong(dateStr) {
   });
 }
 
-// Helper: Minimal Neko Empty State Builder with Katana Slash Accent
+// Helper: Minimal Neko Empty State Builder
 function createMinimalEmptyStateHtml(titleText, bodyText) {
   return `
     <div class="minimal-empty-state">
-      <div class="katana-slash-line"></div>
       <div class="minimal-neko-avatar">🐾 ฅ(≚ᄌ≚)ฅ 💤</div>
       <h4 class="minimal-empty-title">${titleText}</h4>
       <p class="minimal-empty-desc">${bodyText}</p>
@@ -104,7 +272,7 @@ function createMinimalEmptyStateHtml(titleText, bodyText) {
   `;
 }
 
-// Load Events Data
+// Load Events Data (JSON + LocalStorage)
 async function loadEvents() {
   state.isLoading = true;
   hideErrorBanner();
@@ -119,7 +287,9 @@ async function loadEvents() {
       throw new Error('Invalid data format: Expected a JSON array.');
     }
     
-    state.events = data;
+    state.customEvents = loadCustomEventsFromStorage();
+    state.events = [...data, ...state.customEvents];
+
     processEvents();
     state.isLoading = false;
     
@@ -144,6 +314,8 @@ async function loadEvents() {
 }
 
 function processEvents() {
+  state.events = [...state.events.filter(e => !e.isCustom), ...state.customEvents];
+
   const dated = [];
   const undated = [];
   
@@ -254,11 +426,24 @@ function renderView() {
 
   renderUndatedSection(state.undatedEvents);
   bindResetFilterBtns();
+  bindDeleteEventBtns();
 }
 
 function bindResetFilterBtns() {
   document.querySelectorAll('.reset-filters-btn').forEach(btn => {
     btn.addEventListener('click', resetAllFilters);
+  });
+}
+
+function bindDeleteEventBtns() {
+  document.querySelectorAll('.delete-event-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const id = btn.dataset.id;
+      if (confirm('Delete this custom quest?')) {
+        deleteCustomEvent(id);
+      }
+    });
   });
 }
 
@@ -441,10 +626,12 @@ function renderUndatedSection(undatedList) {
           <div class="event-meta">
             <span class="badge badge-type type-${ev.type || 'class'}">${typeInfo.label}</span>
             ${ev.subject && ev.subject.trim() !== '' ? `<span class="badge badge-subject">${escapeHtml(ev.subject)}</span>` : ''}
+            ${ev.isCustom ? `<span class="badge badge-custom">Custom Quest</span>` : ''}
           </div>
           <h4 class="event-title" style="margin-top: 0.25rem;">${escapeHtml(ev.title)}</h4>
           ${ev.description && ev.description.trim() !== '' ? `<p class="event-desc">${escapeHtml(ev.description)}</p>` : ''}
         </div>
+        ${ev.isCustom ? `<button class="delete-event-btn" data-id="${ev.id}" title="Delete custom quest">✕</button>` : ''}
       </div>
     `;
   }).join('');
@@ -461,10 +648,12 @@ function renderEventCardHtml(ev) {
           <span class="badge badge-type type-${ev.type || 'class'}">${typeInfo.label}</span>
           ${formattedTimeStr ? `<span class="badge badge-subject">🕒 ${formattedTimeStr}</span>` : '<span class="badge badge-subject">All Day</span>'}
           ${ev.subject && ev.subject.trim() !== '' ? `<span class="badge badge-subject">${escapeHtml(ev.subject)}</span>` : ''}
+          ${ev.isCustom ? `<span class="badge badge-custom">Custom</span>` : ''}
         </div>
         <h4 class="event-title">${escapeHtml(ev.title)}</h4>
         ${ev.description && ev.description.trim() !== '' ? `<p class="event-desc">${escapeHtml(ev.description)}</p>` : ''}
       </div>
+      ${ev.isCustom ? `<button class="delete-event-btn" data-id="${ev.id}" title="Delete custom quest">✕</button>` : ''}
     </div>
   `;
 }
@@ -489,12 +678,58 @@ function openDayDetailModal(dateStr, rawDayEvents) {
   elements.dayModal.classList.add('active');
   document.body.style.overflow = 'hidden';
   bindResetFilterBtns();
+  bindDeleteEventBtns();
 }
 
 function closeDayDetailModal() {
   elements.dayModal.classList.remove('active');
   document.body.style.overflow = '';
   state.selectedDateStr = null;
+}
+
+// Add Custom Quest Modal Handlers
+function openAddQuestModal() {
+  elements.addQuestModal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeAddQuestModal() {
+  elements.addQuestModal.classList.remove('active');
+  document.body.style.overflow = '';
+  elements.addQuestForm.reset();
+}
+
+function handleAddQuestSubmit(e) {
+  e.preventDefault();
+  const title = document.getElementById('quest-title').value.trim();
+  const date = document.getElementById('quest-date').value.trim();
+  const time = document.getElementById('quest-time').value.trim();
+  const subject = document.getElementById('quest-subject').value.trim();
+  const type = document.getElementById('quest-type').value;
+  const description = document.getElementById('quest-desc').value.trim();
+
+  if (!title) return;
+
+  const newQuest = {
+    id: `custom_${Date.now()}_${Math.random().toString(36).substr(2, 4)}`,
+    title,
+    date: date || null,
+    time: time || null,
+    subject: subject || '',
+    type: type || 'class',
+    description: description || '',
+    isCustom: true
+  };
+
+  state.customEvents.push(newQuest);
+  saveCustomEventsToStorage(state.customEvents);
+  
+  processEvents();
+  renderSubjectFilterChips();
+  renderStats();
+  renderView();
+
+  closeAddQuestModal();
 }
 
 // Controls Logic
@@ -609,20 +844,34 @@ function initApp() {
   });
 
   elements.exportIcsBtn.addEventListener('click', exportICS);
+  
+  // Custom Quest Modal Listeners
+  elements.addQuestBtn.addEventListener('click', openAddQuestModal);
+  elements.addModalCloseBtn.addEventListener('click', closeAddQuestModal);
+  elements.addModalCancelBtn.addEventListener('click', closeAddQuestModal);
+  elements.addQuestForm.addEventListener('submit', handleAddQuestSubmit);
+  elements.addQuestModal.addEventListener('click', (e) => {
+    if (e.target === elements.addQuestModal) closeAddQuestModal();
+  });
+
   elements.modalCloseBtn.addEventListener('click', closeDayDetailModal);
   elements.dayModal.addEventListener('click', (e) => {
     if (e.target === elements.dayModal) closeDayDetailModal();
   });
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && elements.dayModal.classList.contains('active')) {
-      closeDayDetailModal();
+    if (e.key === 'Escape') {
+      if (elements.dayModal.classList.contains('active')) closeDayDetailModal();
+      if (elements.addQuestModal.classList.contains('active')) closeAddQuestModal();
     }
   });
 
   elements.retryBtn.addEventListener('click', loadEvents);
 
+  initAccentPicker();
   setupTypeFilterChips();
+  initPettingSystem();
+  init3DTiltPhysics();
   loadEvents();
 }
 
