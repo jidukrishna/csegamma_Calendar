@@ -164,7 +164,7 @@ body {
   box-shadow: 0 0 8px currentColor;
 }
 
-/* 🐾 DANCING CAT MASCOT GIF */
+/* Static Dancing Cat Mascot (No Movement on Touch/Hover) */
 .neko-roof-cat {
   position: absolute;
   top: -32px;
@@ -174,7 +174,6 @@ body {
   align-items: center;
   user-select: none;
   cursor: pointer;
-  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .neko-gif-img {
@@ -183,19 +182,6 @@ body {
   object-fit: contain;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6));
   pointer-events: auto;
-}
-
-.neko-roof-cat:hover {
-  transform: translateY(-5px) scale(1.2);
-}
-
-.neko-roof-cat.petting {
-  animation: purrBounce 0.4s ease-in-out infinite alternate;
-}
-
-@keyframes purrBounce {
-  0% { transform: translateY(-4px) rotate(-5deg) scale(1.15); }
-  100% { transform: translateY(-8px) rotate(5deg) scale(1.25); }
 }
 
 .neko-tail-wag {
