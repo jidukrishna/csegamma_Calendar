@@ -1072,7 +1072,53 @@ body {
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
   .app-container {
+    display: flex;
+    flex-direction: column;
     padding: 1rem 0.85rem 3rem 0.85rem;
+  }
+
+  /* Flex Reordering: Calendar comes FIRST before Stats */
+  .app-header { order: 1; }
+  .controls-panel { order: 2; margin-bottom: 1rem; }
+  .calendar-wrapper { order: 3; margin-bottom: 1rem; }
+  .stats-grid { 
+    order: 4; 
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.35rem;
+    margin-bottom: 1.5rem;
+  }
+  .undated-section { order: 5; }
+
+  /* Ultra-Compact Mobile Stats Bar */
+  .stat-card {
+    padding: 0.45rem 0.35rem;
+    align-items: center;
+    text-align: center;
+    gap: 0.1rem;
+    border-radius: var(--radius-sm);
+  }
+
+  .stat-header {
+    flex-direction: column;
+    gap: 0.1rem;
+    align-items: center;
+  }
+
+  .stat-icon {
+    font-size: 0.75rem;
+  }
+
+  .stat-label {
+    font-size: 0.625rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  .stat-value {
+    font-size: 1.15rem;
+    font-weight: 700;
   }
 
   .app-header {
