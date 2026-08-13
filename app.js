@@ -1,5 +1,5 @@
 /**
- * CSE Gamma — Minimalist Dark Neko Class Calendar Engine 🐾
+ * CSE Gamma — Minimalist Dark Neko & Minion Class Calendar Engine 🍌🐾
  */
 
 // Application State
@@ -89,16 +89,15 @@ function formatDateLong(dateStr) {
   });
 }
 
-// Helper: Minimal Neko Empty State Builder with Katana Slash Accent
+// Helper: Minimal Neko & Minion Empty State Builder
 function createMinimalEmptyStateHtml(titleText, bodyText) {
   return `
     <div class="minimal-empty-state">
-      <div class="katana-slash-line"></div>
-      <div class="minimal-neko-avatar">🐾 ฅ(≚ᄌ≚)ฅ 💤</div>
+      <div class="minimal-neko-avatar">🍌 (🟡👓) 🐾 ฅ(≚ᄌ≚)ฅ 💤</div>
       <h4 class="minimal-empty-title">${titleText}</h4>
       <p class="minimal-empty-desc">${bodyText}</p>
       <button class="btn btn-sm reset-filters-btn" style="margin-top: 0.5rem;">
-        Reset Filters 🐾
+        Reset Filters 🍌
       </button>
     </div>
   `;
@@ -394,7 +393,7 @@ function renderAgendaView() {
       dayGroup.className = 'agenda-day-group';
       dayGroup.innerHTML = `
         <div class="agenda-date-header">
-          <span>${formatDateLong(dateStr)} 🐾</span>
+          <span>${formatDateLong(dateStr)} 🍌</span>
           <span class="badge badge-subject">${filtered.length} event${filtered.length > 1 ? 's' : ''}</span>
         </div>
         <div class="agenda-events-list">
@@ -407,7 +406,7 @@ function renderAgendaView() {
 
   if (totalFiltered === 0) {
     wrapper.innerHTML = createMinimalEmptyStateHtml(
-      "Neko is Sleeping 🐾 💤",
+      "Bello! Banana Break 🍌 💤",
       `No events match your current filter selections for ${MONTH_NAMES[state.currentMonth]} ${state.currentYear}.`
     );
   }
@@ -425,7 +424,7 @@ function renderUndatedSection(undatedList) {
       elements.undatedSection.style.display = 'block';
       container.innerHTML = `
         <div style="grid-column: 1 / -1;">
-          ${createMinimalEmptyStateHtml("All Tasks Clear 🐾", "No pending tasks match the current active filters.")}
+          ${createMinimalEmptyStateHtml("All Tasks Clear 🍌", "No pending tasks match the current active filters.")}
         </div>
       `;
     }
@@ -474,12 +473,12 @@ function openDayDetailModal(dateStr, rawDayEvents) {
   state.selectedDateStr = dateStr;
   const filteredEvents = rawDayEvents.filter(filterEvent);
 
-  elements.modalDateTitle.textContent = `${formatDateLong(dateStr)} 🐾`;
+  elements.modalDateTitle.textContent = `${formatDateLong(dateStr)} 🍌`;
   elements.modalEventCount.textContent = `${filteredEvents.length} event${filteredEvents.length === 1 ? '' : 's'} scheduled`;
 
   if (filteredEvents.length === 0) {
     elements.modalEventsList.innerHTML = createMinimalEmptyStateHtml(
-      "Neko Rest Day 🐾 💤",
+      "Minion Rest Day 🍌 💤",
       "No events scheduled for this specific date."
     );
   } else {
