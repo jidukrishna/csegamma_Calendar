@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "id": "e_1786651224674",
+    "title": "day 4 5 6",
+    "date": "2026-08-17",
+    "time": null,
+    "type": "class",
+    "subject": "DBMS LAB",
+    "description": ""
+  },
+  {
+    "id": "e_1786651256818",
+    "title": "CN ALGo",
+    "date": "2026-08-18",
+    "time": null,
+    "type": "class",
+    "subject": "CN",
+    "description": ""
+  }
+]
