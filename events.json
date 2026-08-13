@@ -954,15 +954,6 @@
     "description": "Collaborative group assignment, submit via GitHub repository."
   },
   {
-    "id": "e110",
-    "title": "Pending: General Study Task",
-    "date": null,
-    "time": null,
-    "type": "personal",
-    "subject": null,
-    "description": "Announced in lecture, official deadline pending release."
-  },
-  {
     "id": "e111",
     "title": "Pending: OS303 Problem Set",
     "date": null,
