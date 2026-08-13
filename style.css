@@ -1061,8 +1061,8 @@ body {
 
 /* Footer */
 .app-footer {
-  margin-top: 3.5rem;
-  padding-top: 1.5rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
   border-top: 1px solid var(--border-color);
   text-align: center;
   font-size: 0.85rem;
@@ -1074,7 +1074,7 @@ body {
   .app-container {
     display: flex;
     flex-direction: column;
-    padding: 0.5rem 0.65rem 2.5rem 0.65rem;
+    padding: 0.5rem 0.65rem 1.25rem 0.65rem;
   }
 
   /* Flex Reordering: Calendar comes FIRST before Stats */
@@ -1112,9 +1112,14 @@ body {
     order: 4; 
     grid-template-columns: repeat(4, 1fr);
     gap: 0.35rem;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
   }
-  .undated-section { order: 5; }
+  .undated-section { order: 5; margin-bottom: 0.75rem; }
+  .app-footer {
+    order: 6;
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+  }
 
   /* Ultra-Compact Mobile Stats Bar */
   .stat-card {
