@@ -1,5 +1,5 @@
 /**
- * CSE GAMMA — BERSERK MONOCHROME ENGINE [100% PURE BLACK & WHITE]
+ * CSE Gamma — Minimalist Dark Class Calendar Engine
  */
 
 // Application State
@@ -19,10 +19,10 @@ const state = {
   error: null
 };
 
-// Month Titles
+// Month Names
 const MONTH_NAMES = [
-  "JANUARY 1月", "FEBRUARY 2月", "MARCH 3月", "APRIL 4月", "MAY 5月", "JUNE 6月",
-  "JULY 7月", "AUGUST 8月", "SEPTEMBER 9月", "OCTOBER 10月", "NOVEMBER 11月", "DECEMBER 12月"
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
 ];
 
 // DOM References
@@ -45,11 +45,25 @@ const elements = {
   modalEventCount: document.getElementById('modal-event-count'),
   modalEventsList: document.getElementById('modal-events-list'),
   modalCloseBtn: document.getElementById('modal-close-btn'),
+  errorBanner: document.getElementById('error-banner'),
+  errorMessage: document.getElementById('error-message'),
+  retryBtn: document.getElementById('retry-btn'),
   statTotalEvents: document.getElementById('stat-total-events'),
   statTotalExams: document.getElementById('stat-total-exams'),
   statTotalAssignments: document.getElementById('stat-total-assignments'),
   statTotalUndated: document.getElementById('stat-total-undated')
 };
+
+// Category Tags
+function getTypeTag(type) {
+  switch ((type || '').toLowerCase()) {
+    case 'exam': return { label: 'Exam', icon: '⚔️' };
+    case 'assignment': return { label: 'Assignment', icon: '📜' };
+    case 'class': return { label: 'Class', icon: '📚' };
+    case 'personal': return { label: 'Personal', icon: '🍃' };
+    default: return { label: type || 'Event', icon: '📌' };
+  }
+}
 
 // Format 24h -> 12h AM/PM
 function formatTime(timeStr) {
@@ -68,22 +82,21 @@ function formatDateLong(dateStr) {
   const [year, month, day] = dateStr.split('-').map(Number);
   const date = new Date(year, month - 1, day);
   return date.toLocaleDateString('en-US', {
-    weekday: 'short',
+    weekday: 'long',
     month: 'short',
     day: 'numeric',
     year: 'numeric'
-  }).toUpperCase();
+  });
 }
 
-// Minimalist Black & White Empty State Builder
-function createMonoEmptyStateHtml(titleText, bodyText) {
+// Helper: Minimal Empty State Builder
+function createMinimalEmptyStateHtml(titleText, bodyText) {
   return `
-    <div class="mono-empty-card">
-      <div class="mono-empty-symbol">// ⚔️ //</div>
-      <h3 class="mono-empty-title">${titleText}</h3>
-      <p class="mono-empty-desc">${bodyText}</p>
-      <button class="mono-btn mono-btn-fill reset-filters-btn" style="margin-top: 0.5rem; font-size: 0.75rem;">
-        RESET FILTERS
+    <div class="minimal-empty-state">
+      <h4 class="minimal-empty-title">${titleText}</h4>
+      <p class="minimal-empty-desc">${bodyText}</p>
+      <button class="btn btn-sm reset-filters-btn" style="margin-top: 0.5rem;">
+        Reset Filters
       </button>
     </div>
   `;
@@ -92,15 +105,16 @@ function createMonoEmptyStateHtml(titleText, bodyText) {
 // Load Events Data
 async function loadEvents() {
   state.isLoading = true;
+  hideErrorBanner();
   
   try {
     const response = await fetch('events.json', { cache: 'no-cache' });
     if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
+      throw new Error(`Failed to fetch events data (HTTP ${response.status})`);
     }
     const data = await response.json();
     if (!Array.isArray(data)) {
-      throw new Error('Expected JSON array');
+      throw new Error('Invalid data format: Expected a JSON array.');
     }
     
     state.events = data;
@@ -122,6 +136,8 @@ async function loadEvents() {
   } catch (err) {
     console.error('Error loading events:', err);
     state.isLoading = false;
+    state.error = err.message || "Couldn't load calendar data.";
+    showErrorBanner(state.error);
   }
 }
 
@@ -182,14 +198,14 @@ function renderSubjectFilterChips() {
   const subjects = Array.from(subjectsSet).sort();
   
   elements.subjectFilterGroup.innerHTML = `
-    <span class="chip-label">SUBJECT:</span>
-    <button class="mono-chip ${state.selectedSubject === 'ALL' ? 'active' : ''}" data-subject="ALL">ALL</button>
+    <span class="filter-label">Subject:</span>
+    <button class="chip ${state.selectedSubject === 'ALL' ? 'active' : ''}" data-subject="ALL">All</button>
     ${subjects.map(sub => `
-      <button class="mono-chip ${state.selectedSubject === sub ? 'active' : ''}" data-subject="${sub}">${escapeHtml(sub)}</button>
+      <button class="chip ${state.selectedSubject === sub ? 'active' : ''}" data-subject="${sub}">${escapeHtml(sub)}</button>
     `).join('')}
   `;
 
-  elements.subjectFilterGroup.querySelectorAll('.mono-chip').forEach(btn => {
+  elements.subjectFilterGroup.querySelectorAll('.chip').forEach(btn => {
     btn.addEventListener('click', () => {
       state.selectedSubject = btn.dataset.subject;
       renderSubjectFilterChips();
@@ -199,10 +215,10 @@ function renderSubjectFilterChips() {
 }
 
 function setupTypeFilterChips() {
-  elements.typeFilterGroup.querySelectorAll('.mono-chip').forEach(btn => {
+  elements.typeFilterGroup.querySelectorAll('.chip').forEach(btn => {
     btn.addEventListener('click', () => {
       state.selectedType = btn.dataset.type;
-      elements.typeFilterGroup.querySelectorAll('.mono-chip').forEach(c => c.classList.remove('active'));
+      elements.typeFilterGroup.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
       btn.classList.add('active');
       renderView();
     });
@@ -215,7 +231,7 @@ function resetAllFilters() {
   state.searchQuery = '';
   elements.searchInput.value = '';
   renderSubjectFilterChips();
-  elements.typeFilterGroup.querySelectorAll('.mono-chip').forEach(c => c.classList.remove('active'));
+  elements.typeFilterGroup.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
   elements.typeFilterGroup.querySelector('[data-type="ALL"]').classList.add('active');
   renderView();
 }
@@ -316,8 +332,9 @@ function createDayCell(dateStr, dayNum, isOtherMonth, isToday, eventsByDate) {
     
     const displayPills = filteredDayEvents.slice(0, 2);
     displayPills.forEach(ev => {
+      const typeClass = `type-${ev.type || 'class'}`;
       eventsPreviewHtml += `
-        <div class="event-pill" title="${escapeHtml(ev.title)}">
+        <div class="event-pill ${typeClass}" title="${escapeHtml(ev.title)}">
           <span>${escapeHtml(ev.title)}</span>
         </div>
       `;
@@ -326,7 +343,7 @@ function createDayCell(dateStr, dayNum, isOtherMonth, isToday, eventsByDate) {
     if (filteredDayEvents.length > 2) {
       eventsPreviewHtml += `
         <div class="event-dots-row">
-          ${filteredDayEvents.slice(2).map(() => `<span class="dot"></span>`).join('')}
+          ${filteredDayEvents.slice(2).map(ev => `<span class="dot dot-${ev.type || 'class'}"></span>`).join('')}
         </div>
       `;
     }
@@ -376,7 +393,7 @@ function renderAgendaView() {
       dayGroup.innerHTML = `
         <div class="agenda-date-header">
           <span>${formatDateLong(dateStr)}</span>
-          <span class="badge">${filtered.length} QUESTS</span>
+          <span class="badge badge-subject">${filtered.length} event${filtered.length > 1 ? 's' : ''}</span>
         </div>
         <div class="agenda-events-list">
           ${filtered.map(renderEventCardHtml).join('')}
@@ -387,9 +404,9 @@ function renderAgendaView() {
   });
 
   if (totalFiltered === 0) {
-    wrapper.innerHTML = createMonoEmptyStateHtml(
-      "NO QUESTS FOUND",
-      `No events match your current filter selections.`
+    wrapper.innerHTML = createMinimalEmptyStateHtml(
+      "No Events Scheduled",
+      `No events match your current filter selections for ${MONTH_NAMES[state.currentMonth]} ${state.currentYear}.`
     );
   }
 }
@@ -406,7 +423,7 @@ function renderUndatedSection(undatedList) {
       elements.undatedSection.style.display = 'block';
       container.innerHTML = `
         <div style="grid-column: 1 / -1;">
-          ${createMonoEmptyStateHtml("ALL SCROLLS CLEAR", "No pending tasks match active filters.")}
+          ${createMinimalEmptyStateHtml("No Pending Tasks", "All task items match current active filters.")}
         </div>
       `;
     }
@@ -415,14 +432,15 @@ function renderUndatedSection(undatedList) {
 
   elements.undatedSection.style.display = 'block';
   container.innerHTML = filtered.map(ev => {
+    const typeInfo = getTypeTag(ev.type);
     return `
       <div class="undated-card">
         <div class="event-card-main">
           <div class="event-meta">
-            <span class="badge">${(ev.type || 'QUEST').toUpperCase()}</span>
-            ${ev.subject && ev.subject.trim() !== '' ? `<span class="badge">${escapeHtml(ev.subject)}</span>` : ''}
+            <span class="badge badge-type type-${ev.type || 'class'}">${typeInfo.label}</span>
+            ${ev.subject && ev.subject.trim() !== '' ? `<span class="badge badge-subject">${escapeHtml(ev.subject)}</span>` : ''}
           </div>
-          <h4 class="event-title" style="margin-top: 0.3rem;">${escapeHtml(ev.title)}</h4>
+          <h4 class="event-title" style="margin-top: 0.25rem;">${escapeHtml(ev.title)}</h4>
           ${ev.description && ev.description.trim() !== '' ? `<p class="event-desc">${escapeHtml(ev.description)}</p>` : ''}
         </div>
       </div>
@@ -432,14 +450,15 @@ function renderUndatedSection(undatedList) {
 
 function renderEventCardHtml(ev) {
   const formattedTimeStr = formatTime(ev.time);
+  const typeInfo = getTypeTag(ev.type);
 
   return `
     <div class="event-card">
       <div class="event-card-main">
         <div class="event-meta">
-          <span class="badge">${(ev.type || 'QUEST').toUpperCase()}</span>
-          ${formattedTimeStr ? `<span class="badge">🕒 ${formattedTimeStr}</span>` : '<span class="badge">ALL DAY</span>'}
-          ${ev.subject && ev.subject.trim() !== '' ? `<span class="badge">${escapeHtml(ev.subject)}</span>` : ''}
+          <span class="badge badge-type type-${ev.type || 'class'}">${typeInfo.label}</span>
+          ${formattedTimeStr ? `<span class="badge badge-subject">🕒 ${formattedTimeStr}</span>` : '<span class="badge badge-subject">All Day</span>'}
+          ${ev.subject && ev.subject.trim() !== '' ? `<span class="badge badge-subject">${escapeHtml(ev.subject)}</span>` : ''}
         </div>
         <h4 class="event-title">${escapeHtml(ev.title)}</h4>
         ${ev.description && ev.description.trim() !== '' ? `<p class="event-desc">${escapeHtml(ev.description)}</p>` : ''}
@@ -454,12 +473,12 @@ function openDayDetailModal(dateStr, rawDayEvents) {
   const filteredEvents = rawDayEvents.filter(filterEvent);
 
   elements.modalDateTitle.textContent = formatDateLong(dateStr);
-  elements.modalEventCount.textContent = `${filteredEvents.length} QUESTS SCHEDULED`;
+  elements.modalEventCount.textContent = `${filteredEvents.length} event${filteredEvents.length === 1 ? '' : 's'} scheduled`;
 
   if (filteredEvents.length === 0) {
-    elements.modalEventsList.innerHTML = createMonoEmptyStateHtml(
-      "REST DAY",
-      "No events scheduled for this date."
+    elements.modalEventsList.innerHTML = createMinimalEmptyStateHtml(
+      "No Events",
+      "No events scheduled for this specific date."
     );
   } else {
     elements.modalEventsList.innerHTML = filteredEvents.map(renderEventCardHtml).join('');
@@ -499,14 +518,14 @@ function jumpToToday() {
 // iCal Exporter
 function exportICS() {
   if (state.datedEvents.length === 0) {
-    alert("No dated quests to export.");
+    alert("No dated events to export.");
     return;
   }
 
   let icsContent = [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    "PRODID:-//Berserk Monochrome Calendar//EN",
+    "PRODID:-//CSE Gamma Minimalist Calendar//EN",
     "CALSCALE:GREGORIAN",
     "METHOD:PUBLISH"
   ];
@@ -526,8 +545,8 @@ function exportICS() {
 
     icsContent.push(
       "BEGIN:VEVENT",
-      `UID:${ev.id || Math.random().toString(36).substring(2)}@berserk-mono`,
-      `SUMMARY:${ev.title || 'Quest'}`,
+      `UID:${ev.id || Math.random().toString(36).substring(2)}@cse-gamma`,
+      `SUMMARY:${ev.title || 'Event'}`,
       `DESCRIPTION:${ev.description ? ev.description.replace(/\n/g, '\\n') : ''}`,
       ev.time ? `DTSTART:${dtStart}` : `DTSTART;VALUE=DATE:${dtStart}`,
       ev.time ? `DTEND:${dtEnd}` : `DTEND;VALUE=DATE:${dtEnd}`,
@@ -541,10 +560,19 @@ function exportICS() {
   const blob = new Blob([icsContent.join("\r\n")], { type: 'text/calendar;charset=utf-8' });
   const link = document.createElement('a');
   link.href = URL.createObjectURL(blob);
-  link.download = 'berserk_monochrome_calendar.ics';
+  link.download = 'cse_gamma_calendar.ics';
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
+}
+
+function showErrorBanner(msg) {
+  elements.errorMessage.textContent = msg;
+  elements.errorBanner.style.display = 'flex';
+}
+
+function hideErrorBanner() {
+  elements.errorBanner.style.display = 'none';
 }
 
 function escapeHtml(str) {
@@ -561,7 +589,7 @@ function escapeHtml(str) {
 }
 
 function initApp() {
-  document.documentElement.setAttribute('data-theme', 'monochrome');
+  document.documentElement.setAttribute('data-theme', 'dark');
 
   elements.prevMonthBtn.addEventListener('click', () => changeMonth(-1));
   elements.nextMonthBtn.addEventListener('click', () => changeMonth(1));
@@ -574,7 +602,7 @@ function initApp() {
 
   elements.viewToggleBtn.addEventListener('click', () => {
     state.activeView = state.activeView === 'grid' ? 'list' : 'grid';
-    elements.viewToggleBtn.textContent = state.activeView === 'grid' ? 'LIST VIEW' : 'GRID VIEW';
+    elements.viewToggleBtn.querySelector('span').textContent = state.activeView === 'grid' ? 'List View' : 'Grid View';
     renderView();
   });
 
@@ -589,6 +617,8 @@ function initApp() {
       closeDayDetailModal();
     }
   });
+
+  elements.retryBtn.addEventListener('click', loadEvents);
 
   setupTypeFilterChips();
   loadEvents();
