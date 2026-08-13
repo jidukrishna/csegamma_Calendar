@@ -18,15 +18,6 @@
     "description": ""
   },
   {
-    "id": "e_1786651567258",
-    "title": "lab test",
-    "date": "2026-08-19",
-    "time": null,
-    "type": "exam",
-    "subject": "AAD",
-    "description": ""
-  },
-  {
     "id": "e_1786651591147",
     "title": "aam start",
     "date": "2026-09-02",
@@ -34,14 +25,5 @@
     "type": "exam",
     "subject": null,
     "description": ""
-  },
-  {
-    "id": "e_1786651749884",
-    "title": "mid sem feedback",
-    "date": null,
-    "time": null,
-    "type": "class",
-    "subject": null,
-    "description": "cheyyyy"
   }
 ]
