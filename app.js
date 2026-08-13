@@ -1,6 +1,5 @@
 /**
- * Class Calendar - Peach Manga & Samurai Torii Engine (with Mini Neko Cats)
- * Bright Light Mode & Animated Samurai Empty State
+ * CSE Gamma — Minimalist Dark Class Calendar Engine
  */
 
 // Application State
@@ -10,7 +9,7 @@ const state = {
   undatedEvents: [],
   eventsByDate: new Map(),
   currentYear: new Date().getFullYear(),
-  currentMonth: new Date().getMonth(), // 0-indexed
+  currentMonth: new Date().getMonth(),
   selectedSubject: 'ALL',
   selectedType: 'ALL',
   searchQuery: '',
@@ -20,20 +19,10 @@ const state = {
   error: null
 };
 
-// Japanese Month Kanji & Manga Titles
-const JAPANESE_MONTHS = [
-  { english: "January", kanji: "1月 睦月 (Mutzuki)" },
-  { english: "February", kanji: "2月 如月 (Kisaragi)" },
-  { english: "March", kanji: "3月 弥生 (Yayoi)" },
-  { english: "April", kanji: "4月 卯月 (Uzuki)" },
-  { english: "May", kanji: "5月 皐月 (Satsuki)" },
-  { english: "June", kanji: "6月 水無月 (Minazuki)" },
-  { english: "July", kanji: "7月 文月 (Fumizuki)" },
-  { english: "August", kanji: "8月 葉月 (Hazuki)" },
-  { english: "September", kanji: "9月 長月 (Nagatsuki)" },
-  { english: "October", kanji: "10月 神無月 (Kannazuki)" },
-  { english: "November", kanji: "11月 霜月 (Shimotsuki)" },
-  { english: "December", kanji: "12月 師走 (Shiwasu)" }
+// Month Names
+const MONTH_NAMES = [
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
 ];
 
 // DOM References
@@ -59,7 +48,6 @@ const elements = {
   errorBanner: document.getElementById('error-banner'),
   errorMessage: document.getElementById('error-message'),
   retryBtn: document.getElementById('retry-btn'),
-  // Stats
   statTotalEvents: document.getElementById('stat-total-events'),
   statTotalExams: document.getElementById('stat-total-exams'),
   statTotalAssignments: document.getElementById('stat-total-assignments'),
@@ -69,11 +57,11 @@ const elements = {
 // Category Tags
 function getTypeTag(type) {
   switch ((type || '').toLowerCase()) {
-    case 'exam': return { label: 'Exam 試', icon: '⚔️' };
-    case 'assignment': return { label: 'Assignment 巻', icon: '📜' };
-    case 'class': return { label: 'Class 🌸', icon: '🍑' };
-    case 'personal': return { label: 'Personal 心', icon: '🍃' };
-    default: return { label: type || 'Quest', icon: '⛩️' };
+    case 'exam': return { label: 'Exam', icon: '⚔️' };
+    case 'assignment': return { label: 'Assignment', icon: '📜' };
+    case 'class': return { label: 'Class', icon: '📚' };
+    case 'personal': return { label: 'Personal', icon: '🍃' };
+    default: return { label: type || 'Event', icon: '📌' };
   }
 }
 
@@ -101,19 +89,14 @@ function formatDateLong(dateStr) {
   });
 }
 
-// Helper: Animated Samurai Empty State Builder
-function createSamuraiEmptyStateHtml(titleText, bodyText) {
+// Helper: Minimal Empty State Builder
+function createMinimalEmptyStateHtml(titleText, bodyText) {
   return `
-    <div class="samurai-empty-card animate-fade-in">
-      <div class="samurai-avatar-wrapper">
-        <div class="samurai-emblem-circle">⚔️</div>
-        <div class="katana-slash-blade"></div>
-      </div>
-      <div class="samurai-sound-callout">ズバッ! (ZUBAT!)</div>
-      <h3 class="samurai-empty-title">${titleText}</h3>
-      <p class="samurai-empty-desc">${bodyText}</p>
-      <button class="btn btn-peach reset-filters-btn" style="margin-top: 0.5rem; font-size: 0.85rem;">
-        ⛩️ Rest at Dojo & Reset Filters
+    <div class="minimal-empty-state">
+      <h4 class="minimal-empty-title">${titleText}</h4>
+      <p class="minimal-empty-desc">${bodyText}</p>
+      <button class="btn btn-sm reset-filters-btn" style="margin-top: 0.5rem;">
+        Reset Filters
       </button>
     </div>
   `;
@@ -127,11 +110,11 @@ async function loadEvents() {
   try {
     const response = await fetch('events.json', { cache: 'no-cache' });
     if (!response.ok) {
-      throw new Error(`Failed to fetch events data (HTTP status ${response.status})`);
+      throw new Error(`Failed to fetch events data (HTTP ${response.status})`);
     }
     const data = await response.json();
     if (!Array.isArray(data)) {
-      throw new Error('Invalid data format: Expected a JSON array of events.');
+      throw new Error('Invalid data format: Expected a JSON array.');
     }
     
     state.events = data;
@@ -159,17 +142,10 @@ async function loadEvents() {
 }
 
 function processEvents() {
-  const { dated, undated } = splitDatedUndated(state.events);
-  state.datedEvents = dated;
-  state.undatedEvents = undated;
-  state.eventsByDate = groupByDate(state.datedEvents);
-}
-
-function splitDatedUndated(eventsList) {
   const dated = [];
   const undated = [];
   
-  eventsList.forEach(event => {
+  state.events.forEach(event => {
     if (event.date && event.date !== null && event.date.trim() !== '') {
       dated.push(event);
     } else {
@@ -177,7 +153,9 @@ function splitDatedUndated(eventsList) {
     }
   });
 
-  return { dated, undated };
+  state.datedEvents = dated;
+  state.undatedEvents = undated;
+  state.eventsByDate = groupByDate(state.datedEvents);
 }
 
 function groupByDate(eventsList) {
@@ -221,7 +199,7 @@ function renderSubjectFilterChips() {
   
   elements.subjectFilterGroup.innerHTML = `
     <span class="filter-label">Subject:</span>
-    <button class="chip ${state.selectedSubject === 'ALL' ? 'active' : ''}" data-subject="ALL">All Subjects</button>
+    <button class="chip ${state.selectedSubject === 'ALL' ? 'active' : ''}" data-subject="ALL">All</button>
     ${subjects.map(sub => `
       <button class="chip ${state.selectedSubject === sub ? 'active' : ''}" data-subject="${sub}">${escapeHtml(sub)}</button>
     `).join('')}
@@ -258,7 +236,7 @@ function resetAllFilters() {
   renderView();
 }
 
-// Render View Logic
+// Render Views
 function renderView() {
   updateHeaderDisplay();
   
@@ -283,11 +261,7 @@ function bindResetFilterBtns() {
 }
 
 function updateHeaderDisplay() {
-  const monthData = JAPANESE_MONTHS[state.currentMonth];
-  elements.currentMonthDisplay.innerHTML = `
-    ${monthData.english} ${state.currentYear}
-    <span class="month-kanji-sub">${monthData.kanji.split(' ')[0]}</span>
-  `;
+  elements.currentMonthDisplay.textContent = `${MONTH_NAMES[state.currentMonth]} ${state.currentYear}`;
 }
 
 function renderStats() {
@@ -415,11 +389,11 @@ function renderAgendaView() {
       totalFiltered += filtered.length;
       
       const dayGroup = document.createElement('div');
-      dayGroup.className = 'agenda-day-group animate-fade-in';
+      dayGroup.className = 'agenda-day-group';
       dayGroup.innerHTML = `
         <div class="agenda-date-header">
           <span>${formatDateLong(dateStr)}</span>
-          <span class="badge badge-subject">${filtered.length} quest${filtered.length > 1 ? 's' : ''}</span>
+          <span class="badge badge-subject">${filtered.length} event${filtered.length > 1 ? 's' : ''}</span>
         </div>
         <div class="agenda-events-list">
           ${filtered.map(renderEventCardHtml).join('')}
@@ -430,9 +404,9 @@ function renderAgendaView() {
   });
 
   if (totalFiltered === 0) {
-    wrapper.innerHTML = createSamuraiEmptyStateHtml(
-      "Bushido Peace Reigns! ⛩️",
-      `All quests have been vanquished or no events match your filters for ${JAPANESE_MONTHS[state.currentMonth].english} ${state.currentYear}.`
+    wrapper.innerHTML = createMinimalEmptyStateHtml(
+      "No Events Scheduled",
+      `No events match your current filter selections for ${MONTH_NAMES[state.currentMonth]} ${state.currentYear}.`
     );
   }
 }
@@ -449,7 +423,7 @@ function renderUndatedSection(undatedList) {
       elements.undatedSection.style.display = 'block';
       container.innerHTML = `
         <div style="grid-column: 1 / -1;">
-          ${createSamuraiEmptyStateHtml("No Pending Scroll Quests 📜", "Your samurai scroll log is completely clear for the active filters.")}
+          ${createMinimalEmptyStateHtml("No Pending Tasks", "All task items match current active filters.")}
         </div>
       `;
     }
@@ -460,13 +434,13 @@ function renderUndatedSection(undatedList) {
   container.innerHTML = filtered.map(ev => {
     const typeInfo = getTypeTag(ev.type);
     return `
-      <div class="undated-card animate-fade-in">
+      <div class="undated-card">
         <div class="event-card-main">
           <div class="event-meta">
-            <span class="badge badge-type type-${ev.type || 'class'}">${typeInfo.icon} ${typeInfo.label}</span>
-            ${ev.subject && ev.subject.trim() !== '' ? `<span class="badge badge-subject">📚 ${escapeHtml(ev.subject)}</span>` : ''}
+            <span class="badge badge-type type-${ev.type || 'class'}">${typeInfo.label}</span>
+            ${ev.subject && ev.subject.trim() !== '' ? `<span class="badge badge-subject">${escapeHtml(ev.subject)}</span>` : ''}
           </div>
-          <h4 class="event-title" style="margin-top: 0.5rem;">${escapeHtml(ev.title)}</h4>
+          <h4 class="event-title" style="margin-top: 0.25rem;">${escapeHtml(ev.title)}</h4>
           ${ev.description && ev.description.trim() !== '' ? `<p class="event-desc">${escapeHtml(ev.description)}</p>` : ''}
         </div>
       </div>
@@ -482,9 +456,9 @@ function renderEventCardHtml(ev) {
     <div class="event-card">
       <div class="event-card-main">
         <div class="event-meta">
-          <span class="badge badge-type type-${ev.type || 'class'}">${typeInfo.icon} ${typeInfo.label}</span>
-          ${formattedTimeStr ? `<span class="badge badge-subject">🕒 ${formattedTimeStr}</span>` : '<span class="badge badge-subject">All Day 終日</span>'}
-          ${ev.subject && ev.subject.trim() !== '' ? `<span class="badge badge-subject">📚 ${escapeHtml(ev.subject)}</span>` : ''}
+          <span class="badge badge-type type-${ev.type || 'class'}">${typeInfo.label}</span>
+          ${formattedTimeStr ? `<span class="badge badge-subject">🕒 ${formattedTimeStr}</span>` : '<span class="badge badge-subject">All Day</span>'}
+          ${ev.subject && ev.subject.trim() !== '' ? `<span class="badge badge-subject">${escapeHtml(ev.subject)}</span>` : ''}
         </div>
         <h4 class="event-title">${escapeHtml(ev.title)}</h4>
         ${ev.description && ev.description.trim() !== '' ? `<p class="event-desc">${escapeHtml(ev.description)}</p>` : ''}
@@ -498,13 +472,13 @@ function openDayDetailModal(dateStr, rawDayEvents) {
   state.selectedDateStr = dateStr;
   const filteredEvents = rawDayEvents.filter(filterEvent);
 
-  elements.modalDateTitle.textContent = `${formatDateLong(dateStr)} 🐾`;
-  elements.modalEventCount.textContent = `${filteredEvents.length} quest${filteredEvents.length === 1 ? '' : 's'} scheduled`;
+  elements.modalDateTitle.textContent = formatDateLong(dateStr);
+  elements.modalEventCount.textContent = `${filteredEvents.length} event${filteredEvents.length === 1 ? '' : 's'} scheduled`;
 
   if (filteredEvents.length === 0) {
-    elements.modalEventsList.innerHTML = createSamuraiEmptyStateHtml(
-      "Dojo Rest Day 🍃",
-      "No samurai quests scheduled for this date. Time to meditate!"
+    elements.modalEventsList.innerHTML = createMinimalEmptyStateHtml(
+      "No Events",
+      "No events scheduled for this specific date."
     );
   } else {
     elements.modalEventsList.innerHTML = filteredEvents.map(renderEventCardHtml).join('');
@@ -544,14 +518,14 @@ function jumpToToday() {
 // iCal Exporter
 function exportICS() {
   if (state.datedEvents.length === 0) {
-    alert("No dated quests to export.");
+    alert("No dated events to export.");
     return;
   }
 
   let icsContent = [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    "PRODID:-//Peach Manga Samurai Calendar//EN",
+    "PRODID:-//CSE Gamma Minimalist Calendar//EN",
     "CALSCALE:GREGORIAN",
     "METHOD:PUBLISH"
   ];
@@ -571,8 +545,8 @@ function exportICS() {
 
     icsContent.push(
       "BEGIN:VEVENT",
-      `UID:${ev.id || Math.random().toString(36).substring(2)}@samurai-calendar`,
-      `SUMMARY:${ev.title || 'Quest'}`,
+      `UID:${ev.id || Math.random().toString(36).substring(2)}@cse-gamma`,
+      `SUMMARY:${ev.title || 'Event'}`,
       `DESCRIPTION:${ev.description ? ev.description.replace(/\n/g, '\\n') : ''}`,
       ev.time ? `DTSTART:${dtStart}` : `DTSTART;VALUE=DATE:${dtStart}`,
       ev.time ? `DTEND:${dtEnd}` : `DTEND;VALUE=DATE:${dtEnd}`,
@@ -586,86 +560,10 @@ function exportICS() {
   const blob = new Blob([icsContent.join("\r\n")], { type: 'text/calendar;charset=utf-8' });
   const link = document.createElement('a');
   link.href = URL.createObjectURL(blob);
-  link.download = 'peach_manga_samurai_calendar.ics';
+  link.download = 'cse_gamma_calendar.ics';
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
-}
-
-// Peach Blossom Canvas Animation Engine
-function initPeachPetals() {
-  const canvas = document.getElementById('sakura-canvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-
-  let width = canvas.width = window.innerWidth;
-  let height = canvas.height = window.innerHeight;
-
-  window.addEventListener('resize', () => {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-  });
-
-  const PETAL_COUNT = 36;
-  const petals = [];
-
-  for (let i = 0; i < PETAL_COUNT; i++) {
-    petals.push({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      size: Math.random() * 9 + 6,
-      speedY: Math.random() * 1.3 + 0.5,
-      speedX: Math.random() * 0.9 - 0.45,
-      rotation: Math.random() * 360,
-      rotSpeed: Math.random() * 2.5 - 1.25,
-      opacity: Math.random() * 0.55 + 0.35,
-      isSparkle: Math.random() > 0.75
-    });
-  }
-
-  function drawPetal(p) {
-    ctx.save();
-    ctx.translate(p.x, p.y);
-    ctx.rotate((p.rotation * Math.PI) / 180);
-    
-    if (p.isSparkle) {
-      ctx.fillStyle = `rgba(255, 159, 67, ${p.opacity})`;
-      ctx.beginPath();
-      ctx.arc(0, 0, p.size * 0.35, 0, Math.PI * 2);
-      ctx.fill();
-    } else {
-      ctx.fillStyle = `rgba(255, 107, 129, ${p.opacity})`;
-      ctx.beginPath();
-      ctx.moveTo(0, 0);
-      ctx.bezierCurveTo(-p.size, -p.size, -p.size * 1.4, p.size / 2, 0, p.size * 1.4);
-      ctx.bezierCurveTo(p.size * 1.4, p.size / 2, p.size, -p.size, 0, 0);
-      ctx.fill();
-    }
-    ctx.restore();
-  }
-
-  function renderLoop() {
-    ctx.clearRect(0, 0, width, height);
-
-    petals.forEach(p => {
-      p.y += p.speedY;
-      p.x += p.speedX + Math.sin(p.y * 0.01) * 0.4;
-      p.rotation += p.rotSpeed;
-
-      if (p.y > height + 20) {
-        p.y = -20;
-        p.x = Math.random() * width;
-      }
-      if (p.x > width + 20) p.x = -20;
-      if (p.x < -20) p.x = width + 20;
-
-      drawPetal(p);
-    });
-
-    requestAnimationFrame(renderLoop);
-  }
-
-  renderLoop();
 }
 
 function showErrorBanner(msg) {
@@ -691,8 +589,7 @@ function escapeHtml(str) {
 }
 
 function initApp() {
-  // Enforce Light Theme Permanently
-  document.documentElement.setAttribute('data-theme', 'light');
+  document.documentElement.setAttribute('data-theme', 'dark');
 
   elements.prevMonthBtn.addEventListener('click', () => changeMonth(-1));
   elements.nextMonthBtn.addEventListener('click', () => changeMonth(1));
@@ -724,7 +621,6 @@ function initApp() {
   elements.retryBtn.addEventListener('click', loadEvents);
 
   setupTypeFilterChips();
-  initPeachPetals();
   loadEvents();
 }
 
