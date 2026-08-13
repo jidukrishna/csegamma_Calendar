@@ -16,5 +16,14 @@
     "type": "class",
     "subject": "CN",
     "description": ""
+  },
+  {
+    "id": "e_1786651567258",
+    "title": "lab test",
+    "date": "2026-08-19",
+    "time": null,
+    "type": "exam",
+    "subject": "AAD",
+    "description": ""
   }
 ]
