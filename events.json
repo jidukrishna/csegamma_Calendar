@@ -1,92 +1,1046 @@
 [
   {
     "id": "e1",
-    "title": "Midterm Exam",
-    "date": "2026-08-20",
-    "time": "10:00",
+    "title": "CSET301 Midterm Exam",
+    "date": "2026-08-01",
+    "time": "13:30",
     "type": "exam",
-    "subject": "Physics",
-    "description": "Chapters 1-5, room 204"
+    "subject": "CSET301",
+    "description": "Bring laptop with full charge and environment prepared."
   },
   {
     "id": "e2",
-    "title": "Essay Draft Due",
-    "date": "2026-08-20",
-    "time": null,
-    "type": "assignment",
-    "subject": "English",
-    "description": "Submit via portal"
+    "title": "DBMS202 Unit Test 2",
+    "date": "2026-08-01",
+    "time": "14:00",
+    "type": "exam",
+    "subject": "DBMS202",
+    "description": "Submit PDF report to LMS before deadline."
   },
   {
     "id": "e3",
-    "title": "Guest Lecture",
-    "date": "2026-08-22",
+    "title": "Competitive Coding Practice",
+    "date": "2026-08-03",
     "time": "14:00",
-    "type": "class",
-    "subject": "History",
-    "description": "Dr. Amara on climate policy"
+    "type": "personal",
+    "subject": "",
+    "description": "Submit PDF report to LMS before deadline."
   },
   {
     "id": "e4",
-    "title": "Study Group",
-    "date": "2026-08-27",
-    "time": "18:30",
-    "type": "personal",
-    "subject": "",
-    "description": ""
+    "title": "WEBDEV Guest Lecture",
+    "date": "2026-08-03",
+    "time": "14:00",
+    "type": "class",
+    "subject": "WEBDEV",
+    "description": "Bring laptop with full charge and environment prepared."
   },
   {
     "id": "e5",
-    "title": "Problem Set 3",
-    "date": "2026-09-01",
-    "time": null,
-    "type": "assignment",
-    "subject": "Math",
-    "description": "Late penalty after 11:59pm"
+    "title": "Hackathon Preparation",
+    "date": "2026-08-05",
+    "time": "15:30",
+    "type": "personal",
+    "subject": "MATH301",
+    "description": "Chapters 1 to 4 coverage. Room 304."
   },
   {
     "id": "e6",
-    "title": "Final Project",
-    "date": null,
-    "time": null,
-    "type": "assignment",
-    "subject": "Physics",
-    "description": "Announced in class, due date TBD"
+    "title": "Library Reading",
+    "date": "2026-08-05",
+    "time": "15:30",
+    "type": "personal",
+    "subject": "",
+    "description": "Review key concepts and solved example questions."
   },
   {
     "id": "e7",
-    "title": "Lab Safety Seminar",
-    "date": "2026-08-05",
-    "time": "09:00",
-    "type": "class",
-    "subject": "Physics",
-    "description": "Mandatory safety walk-through in Lab B"
+    "title": "Coffee Break & Chat",
+    "date": "2026-08-06",
+    "time": "10:00",
+    "type": "personal",
+    "subject": "",
+    "description": "Mandatory attendance for all CSE Gamma students."
   },
   {
     "id": "e8",
-    "title": "Linear Algebra Quiz",
-    "date": "2026-08-14",
-    "time": "11:15",
+    "title": "OS303 Surprise Quiz",
+    "date": "2026-08-07",
+    "time": "14:00",
     "type": "exam",
-    "subject": "Math",
-    "description": "Eigenvalues & Eigenvectors"
+    "subject": "OS303",
+    "description": "Preparation for upcoming end-semester examinations."
   },
   {
     "id": "e9",
-    "title": "Team Project Brainstorming",
-    "date": "2026-08-14",
-    "time": "16:00",
-    "type": "personal",
-    "subject": "",
-    "description": "Discuss topic ideas over Coffee"
+    "title": "NETWORKS Surprise Quiz",
+    "date": "2026-08-07",
+    "time": "08:30",
+    "type": "exam",
+    "subject": "NETWORKS",
+    "description": "Bring laptop with full charge and environment prepared."
   },
   {
     "id": "e10",
-    "title": "History Reading Reflection",
+    "title": "DAA201 Seminar",
+    "date": "2026-08-08",
+    "time": "16:45",
+    "type": "class",
+    "subject": "DAA201",
+    "description": "Review key concepts and solved example questions."
+  },
+  {
+    "id": "e11",
+    "title": "CYBER401 Surprise Quiz",
+    "date": "2026-08-08",
+    "time": "08:30",
+    "type": "exam",
+    "subject": "CYBER401",
+    "description": "Collaborative group assignment, submit via GitHub repository."
+  },
+  {
+    "id": "e12",
+    "title": "WEBDEV Viva Voce Exam",
+    "date": "2026-08-09",
+    "time": null,
+    "type": "exam",
+    "subject": "WEBDEV",
+    "description": "Graded evaluation, 15% weightage of total score."
+  },
+  {
+    "id": "e13",
+    "title": "Group Project Sync",
+    "date": "2026-08-10",
+    "time": "13:30",
+    "type": "personal",
+    "subject": "WEBDEV",
+    "description": "Bring laptop with full charge and environment prepared."
+  },
+  {
+    "id": "e14",
+    "title": "Hackathon Preparation",
+    "date": "2026-08-10",
+    "time": "16:45",
+    "type": "personal",
+    "subject": "",
+    "description": "Preparation for upcoming end-semester examinations."
+  },
+  {
+    "id": "e15",
+    "title": "Hackathon Preparation",
+    "date": "2026-08-11",
+    "time": "09:15",
+    "type": "personal",
+    "subject": "",
+    "description": "Mandatory attendance for all CSE Gamma students."
+  },
+  {
+    "id": "e16",
+    "title": "AI402 Lab Hands-on Session",
+    "date": "2026-08-12",
+    "time": "14:00",
+    "type": "class",
+    "subject": "AI402",
+    "description": "Bring laptop with full charge and environment prepared."
+  },
+  {
+    "id": "e17",
+    "title": "CSET301 Research Paper Review",
+    "date": "2026-08-12",
+    "time": "09:15",
+    "type": "assignment",
+    "subject": "CSET301",
+    "description": "Collaborative group assignment, submit via GitHub repository."
+  },
+  {
+    "id": "e18",
+    "title": "NETWORKS Algorithm Design Sheet",
+    "date": "2026-08-13",
+    "time": "13:30",
+    "type": "assignment",
+    "subject": "NETWORKS",
+    "description": "Preparation for upcoming end-semester examinations."
+  },
+  {
+    "id": "e19",
+    "title": "Coffee Break & Chat",
+    "date": "2026-08-14",
+    "time": "16:45",
+    "type": "personal",
+    "subject": "CSET301",
+    "description": "Mandatory attendance for all CSE Gamma students."
+  },
+  {
+    "id": "e20",
+    "title": "DAA201 Group Discussion",
+    "date": "2026-08-14",
+    "time": "13:30",
+    "type": "class",
+    "subject": "DAA201",
+    "description": "Mandatory attendance for all CSE Gamma students."
+  },
+  {
+    "id": "e21",
+    "title": "OS303 Live Coding Demo",
+    "date": "2026-08-15",
+    "time": "11:15",
+    "type": "class",
+    "subject": "OS303",
+    "description": "Mandatory attendance for all CSE Gamma students."
+  },
+  {
+    "id": "e22",
+    "title": "NETWORKS Algorithm Design Sheet",
+    "date": "2026-08-16",
+    "time": "11:15",
+    "type": "assignment",
+    "subject": "NETWORKS",
+    "description": "Bring laptop with full charge and environment prepared."
+  },
+  {
+    "id": "e23",
+    "title": "CS202 Lab Assignment",
+    "date": "2026-08-16",
+    "time": "11:15",
+    "type": "assignment",
+    "subject": "CS202",
+    "description": "Bring laptop with full charge and environment prepared."
+  },
+  {
+    "id": "e24",
+    "title": "DAA201 Seminar",
+    "date": "2026-08-17",
+    "time": "09:15",
+    "type": "class",
+    "subject": "DAA201",
+    "description": "Bring laptop with full charge and environment prepared."
+  },
+  {
+    "id": "e25",
+    "title": "DBMS202 Lab Practical Exam",
+    "date": "2026-08-18",
+    "time": "14:00",
+    "type": "exam",
+    "subject": "DBMS202",
+    "description": "Submit PDF report to LMS before deadline."
+  },
+  {
+    "id": "e26",
+    "title": "OS303 Project Milestone",
+    "date": "2026-08-19",
+    "time": null,
+    "type": "assignment",
+    "subject": "OS303",
+    "description": "Collaborative group assignment, submit via GitHub repository."
+  },
+  {
+    "id": "e27",
+    "title": "WEBDEV Viva Voce Exam",
+    "date": "2026-08-20",
+    "time": null,
+    "type": "exam",
+    "subject": "WEBDEV",
+    "description": "Chapters 1 to 4 coverage. Room 304."
+  },
+  {
+    "id": "e28",
+    "title": "WEBDEV Case Study Analysis",
+    "date": "2026-08-20",
+    "time": "18:00",
+    "type": "assignment",
+    "subject": "WEBDEV",
+    "description": "Mandatory attendance for all CSE Gamma students."
+  },
+  {
+    "id": "e29",
+    "title": "AI402 Surprise Quiz",
+    "date": "2026-08-21",
+    "time": "13:30",
+    "type": "exam",
+    "subject": "AI402",
+    "description": "Mandatory attendance for all CSE Gamma students."
+  },
+  {
+    "id": "e30",
+    "title": "DAA201 Live Coding Demo",
+    "date": "2026-08-22",
+    "time": "13:30",
+    "type": "class",
+    "subject": "DAA201",
+    "description": "Submit PDF report to LMS before deadline."
+  },
+  {
+    "id": "e31",
+    "title": "MATH301 Surprise Quiz",
+    "date": "2026-08-22",
+    "time": null,
+    "type": "exam",
+    "subject": "MATH301",
+    "description": "Mandatory attendance for all CSE Gamma students."
+  },
+  {
+    "id": "e32",
+    "title": "OS303 Unit Test 2",
+    "date": "2026-08-23",
+    "time": "09:15",
+    "type": "exam",
+    "subject": "OS303",
+    "description": "Review key concepts and solved example questions."
+  },
+  {
+    "id": "e33",
+    "title": "CSET301 Theory Evaluation",
+    "date": "2026-08-26",
+    "time": "16:45",
+    "type": "exam",
+    "subject": "CSET301",
+    "description": "Chapters 1 to 4 coverage. Room 304."
+  },
+  {
+    "id": "e34",
+    "title": "CYBER401 Midterm Exam",
+    "date": "2026-08-26",
+    "time": "13:30",
+    "type": "exam",
+    "subject": "CYBER401",
+    "description": "Bring laptop with full charge and environment prepared."
+  },
+  {
+    "id": "e35",
+    "title": "OS303 Unit Test 2",
+    "date": "2026-08-27",
+    "time": "13:30",
+    "type": "exam",
+    "subject": "OS303",
+    "description": "Mandatory attendance for all CSE Gamma students."
+  },
+  {
+    "id": "e36",
+    "title": "CS202 Surprise Quiz",
+    "date": "2026-08-28",
+    "time": "09:15",
+    "type": "exam",
+    "subject": "CS202",
+    "description": "Review key concepts and solved example questions."
+  },
+  {
+    "id": "e37",
+    "title": "AI402 Seminar",
+    "date": "2026-08-28",
+    "time": "08:30",
+    "type": "class",
+    "subject": "AI402",
+    "description": "Graded evaluation, 15% weightage of total score."
+  },
+  {
+    "id": "e38",
+    "title": "DAA201 Tutorial Session",
+    "date": "2026-08-29",
+    "time": "08:30",
+    "type": "class",
+    "subject": "DAA201",
+    "description": "Mandatory attendance for all CSE Gamma students."
+  },
+  {
+    "id": "e39",
+    "title": "DBMS202 Research Paper Review",
+    "date": "2026-08-30",
+    "time": "10:00",
+    "type": "assignment",
+    "subject": "DBMS202",
+    "description": "Collaborative group assignment, submit via GitHub repository."
+  },
+  {
+    "id": "e40",
+    "title": "Hackathon Preparation",
+    "date": "2026-09-01",
+    "time": null,
+    "type": "personal",
+    "subject": "",
+    "description": "Chapters 1 to 4 coverage. Room 304."
+  },
+  {
+    "id": "e41",
+    "title": "Library Reading",
+    "date": "2026-09-02",
+    "time": "14:00",
+    "type": "personal",
+    "subject": "",
+    "description": "Bring laptop with full charge and environment prepared."
+  },
+  {
+    "id": "e42",
+    "title": "NETWORKS Code Submission",
+    "date": "2026-09-04",
+    "time": "10:00",
+    "type": "assignment",
+    "subject": "NETWORKS",
+    "description": "Submit PDF report to LMS before deadline."
+  },
+  {
+    "id": "e43",
+    "title": "Peer Code Review",
+    "date": "2026-09-05",
+    "time": "08:30",
+    "type": "personal",
+    "subject": "",
+    "description": "Mandatory attendance for all CSE Gamma students."
+  },
+  {
+    "id": "e44",
+    "title": "Group Project Sync",
+    "date": "2026-09-06",
+    "time": null,
+    "type": "personal",
+    "subject": "",
+    "description": "Chapters 1 to 4 coverage. Room 304."
+  },
+  {
+    "id": "e45",
+    "title": "DBMS202 Surprise Quiz",
+    "date": "2026-09-07",
+    "time": "08:30",
+    "type": "exam",
+    "subject": "DBMS202",
+    "description": "Mandatory attendance for all CSE Gamma students."
+  },
+  {
+    "id": "e46",
+    "title": "Peer Code Review",
+    "date": "2026-09-08",
+    "time": "08:30",
+    "type": "personal",
+    "subject": "",
+    "description": "Mandatory attendance for all CSE Gamma students."
+  },
+  {
+    "id": "e47",
+    "title": "Library Reading",
+    "date": "2026-09-08",
+    "time": "18:00",
+    "type": "personal",
+    "subject": "",
+    "description": "Preparation for upcoming end-semester examinations."
+  },
+  {
+    "id": "e48",
+    "title": "Hackathon Preparation",
+    "date": "2026-09-09",
+    "time": "11:15",
+    "type": "personal",
+    "subject": "DAA201",
+    "description": "Graded evaluation, 15% weightage of total score."
+  },
+  {
+    "id": "e49",
+    "title": "Self Study Sprint",
+    "date": "2026-09-10",
+    "time": "08:30",
+    "type": "personal",
+    "subject": "",
+    "description": "Collaborative group assignment, submit via GitHub repository."
+  },
+  {
+    "id": "e50",
+    "title": "NETWORKS Viva Voce Exam",
+    "date": "2026-09-11",
+    "time": "18:00",
+    "type": "exam",
+    "subject": "NETWORKS",
+    "description": "Chapters 1 to 4 coverage. Room 304."
+  },
+  {
+    "id": "e51",
+    "title": "Coffee Break & Chat",
+    "date": "2026-09-11",
+    "time": null,
+    "type": "personal",
+    "subject": "",
+    "description": "Submit PDF report to LMS before deadline."
+  },
+  {
+    "id": "e52",
+    "title": "WEBDEV Unit Test 2",
+    "date": "2026-09-12",
+    "time": "09:15",
+    "type": "exam",
+    "subject": "WEBDEV",
+    "description": "Bring laptop with full charge and environment prepared."
+  },
+  {
+    "id": "e53",
+    "title": "AI402 Group Discussion",
+    "date": "2026-09-13",
+    "time": "14:00",
+    "type": "class",
+    "subject": "AI402",
+    "description": "Mandatory attendance for all CSE Gamma students."
+  },
+  {
+    "id": "e54",
+    "title": "CYBER401 Midterm Exam",
+    "date": "2026-09-14",
+    "time": "15:30",
+    "type": "exam",
+    "subject": "CYBER401",
+    "description": "Submit PDF report to LMS before deadline."
+  },
+  {
+    "id": "e55",
+    "title": "DBMS202 Viva Voce Exam",
+    "date": "2026-09-15",
+    "time": "14:00",
+    "type": "exam",
+    "subject": "DBMS202",
+    "description": "Preparation for upcoming end-semester examinations."
+  },
+  {
+    "id": "e56",
+    "title": "CS202 Review & Doubt Class",
+    "date": "2026-09-15",
+    "time": "14:00",
+    "type": "class",
+    "subject": "CS202",
+    "description": "Collaborative group assignment, submit via GitHub repository."
+  },
+  {
+    "id": "e57",
+    "title": "MATH301 Homework 4",
+    "date": "2026-09-16",
+    "time": "09:15",
+    "type": "assignment",
+    "subject": "MATH301",
+    "description": "Mandatory attendance for all CSE Gamma students."
+  },
+  {
+    "id": "e58",
+    "title": "OS303 Lab Assignment",
+    "date": "2026-09-16",
+    "time": "18:00",
+    "type": "assignment",
+    "subject": "OS303",
+    "description": "Bring laptop with full charge and environment prepared."
+  },
+  {
+    "id": "e59",
+    "title": "Library Reading",
+    "date": "2026-09-17",
+    "time": "18:00",
+    "type": "personal",
+    "subject": "DAA201",
+    "description": "Mandatory attendance for all CSE Gamma students."
+  },
+  {
+    "id": "e60",
+    "title": "Hackathon Preparation",
+    "date": "2026-09-18",
+    "time": "13:30",
+    "type": "personal",
+    "subject": "CYBER401",
+    "description": "Chapters 1 to 4 coverage. Room 304."
+  },
+  {
+    "id": "e61",
+    "title": "CSET301 Tutorial Session",
+    "date": "2026-09-20",
+    "time": "18:00",
+    "type": "class",
+    "subject": "CSET301",
+    "description": "Graded evaluation, 15% weightage of total score."
+  },
+  {
+    "id": "e62",
+    "title": "WEBDEV Tutorial Session",
+    "date": "2026-09-21",
+    "time": "09:15",
+    "type": "class",
+    "subject": "WEBDEV",
+    "description": "Review key concepts and solved example questions."
+  },
+  {
+    "id": "e63",
+    "title": "CS202 Review & Doubt Class",
+    "date": "2026-09-22",
+    "time": "14:00",
+    "type": "class",
+    "subject": "CS202",
+    "description": "Chapters 1 to 4 coverage. Room 304."
+  },
+  {
+    "id": "e64",
+    "title": "CS202 Project Milestone",
+    "date": "2026-09-23",
+    "time": "13:30",
+    "type": "assignment",
+    "subject": "CS202",
+    "description": "Chapters 1 to 4 coverage. Room 304."
+  },
+  {
+    "id": "e65",
+    "title": "Self Study Sprint",
+    "date": "2026-09-23",
+    "time": "14:00",
+    "type": "personal",
+    "subject": "",
+    "description": "Submit PDF report to LMS before deadline."
+  },
+  {
+    "id": "e66",
+    "title": "Library Reading",
+    "date": "2026-09-24",
+    "time": "11:15",
+    "type": "personal",
+    "subject": "",
+    "description": "Submit PDF report to LMS before deadline."
+  },
+  {
+    "id": "e67",
+    "title": "DBMS202 Seminar",
+    "date": "2026-09-25",
+    "time": "16:45",
+    "type": "class",
+    "subject": "DBMS202",
+    "description": "Collaborative group assignment, submit via GitHub repository."
+  },
+  {
+    "id": "e68",
+    "title": "NETWORKS Problem Set",
+    "date": "2026-09-26",
+    "time": "09:15",
+    "type": "assignment",
+    "subject": "NETWORKS",
+    "description": "Collaborative group assignment, submit via GitHub repository."
+  },
+  {
+    "id": "e69",
+    "title": "DBMS202 Project Milestone",
+    "date": "2026-09-27",
+    "time": "13:30",
+    "type": "assignment",
+    "subject": "DBMS202",
+    "description": "Mandatory attendance for all CSE Gamma students."
+  },
+  {
+    "id": "e70",
+    "title": "Peer Code Review",
+    "date": "2026-09-28",
+    "time": "14:00",
+    "type": "personal",
+    "subject": "",
+    "description": "Chapters 1 to 4 coverage. Room 304."
+  },
+  {
+    "id": "e71",
+    "title": "WEBDEV Lab Hands-on Session",
+    "date": "2026-09-30",
+    "time": "14:00",
+    "type": "class",
+    "subject": "WEBDEV",
+    "description": "Chapters 1 to 4 coverage. Room 304."
+  },
+  {
+    "id": "e72",
+    "title": "DAA201 Tutorial Session",
+    "date": "2026-09-30",
+    "time": "16:45",
+    "type": "class",
+    "subject": "DAA201",
+    "description": "Submit PDF report to LMS before deadline."
+  },
+  {
+    "id": "e73",
+    "title": "NETWORKS Research Paper Review",
+    "date": "2026-10-01",
+    "time": "14:00",
+    "type": "assignment",
+    "subject": "NETWORKS",
+    "description": "Review key concepts and solved example questions."
+  },
+  {
+    "id": "e74",
+    "title": "CS202 Homework 4",
+    "date": "2026-10-04",
+    "time": "10:00",
+    "type": "assignment",
+    "subject": "CS202",
+    "description": "Mandatory attendance for all CSE Gamma students."
+  },
+  {
+    "id": "e75",
+    "title": "MATH301 Homework 4",
+    "date": "2026-10-05",
+    "time": "15:30",
+    "type": "assignment",
+    "subject": "MATH301",
+    "description": "Preparation for upcoming end-semester examinations."
+  },
+  {
+    "id": "e76",
+    "title": "Hackathon Preparation",
+    "date": "2026-10-07",
+    "time": "18:00",
+    "type": "personal",
+    "subject": "CS202",
+    "description": "Collaborative group assignment, submit via GitHub repository."
+  },
+  {
+    "id": "e77",
+    "title": "CSET301 Unit Test 2",
+    "date": "2026-10-07",
+    "time": "11:15",
+    "type": "exam",
+    "subject": "CSET301",
+    "description": "Submit PDF report to LMS before deadline."
+  },
+  {
+    "id": "e78",
+    "title": "Competitive Coding Practice",
+    "date": "2026-10-08",
+    "time": "14:00",
+    "type": "personal",
+    "subject": "DAA201",
+    "description": "Preparation for upcoming end-semester examinations."
+  },
+  {
+    "id": "e79",
+    "title": "CSET301 Unit Test 2",
+    "date": "2026-10-09",
+    "time": "08:30",
+    "type": "exam",
+    "subject": "CSET301",
+    "description": "Submit PDF report to LMS before deadline."
+  },
+  {
+    "id": "e80",
+    "title": "DAA201 Lab Hands-on Session",
+    "date": "2026-10-10",
+    "time": null,
+    "type": "class",
+    "subject": "DAA201",
+    "description": "Preparation for upcoming end-semester examinations."
+  },
+  {
+    "id": "e81",
+    "title": "CSET301 Tutorial Session",
+    "date": "2026-10-10",
+    "time": "11:15",
+    "type": "class",
+    "subject": "CSET301",
+    "description": "Collaborative group assignment, submit via GitHub repository."
+  },
+  {
+    "id": "e82",
+    "title": "DBMS202 Research Paper Review",
+    "date": "2026-10-11",
+    "time": "16:45",
+    "type": "assignment",
+    "subject": "DBMS202",
+    "description": "Review key concepts and solved example questions."
+  },
+  {
+    "id": "e83",
+    "title": "DBMS202 Seminar",
+    "date": "2026-10-11",
+    "time": "14:00",
+    "type": "class",
+    "subject": "DBMS202",
+    "description": "Mandatory attendance for all CSE Gamma students."
+  },
+  {
+    "id": "e84",
+    "title": "OS303 Midterm Exam",
+    "date": "2026-10-12",
+    "time": "18:00",
+    "type": "exam",
+    "subject": "OS303",
+    "description": "Review key concepts and solved example questions."
+  },
+  {
+    "id": "e85",
+    "title": "Hackathon Preparation",
+    "date": "2026-10-13",
+    "time": "16:45",
+    "type": "personal",
+    "subject": "OS303",
+    "description": "Review key concepts and solved example questions."
+  },
+  {
+    "id": "e86",
+    "title": "WEBDEV Lab Hands-on Session",
+    "date": "2026-10-14",
+    "time": "14:00",
+    "type": "class",
+    "subject": "WEBDEV",
+    "description": "Bring laptop with full charge and environment prepared."
+  },
+  {
+    "id": "e87",
+    "title": "CYBER401 Review & Doubt Class",
+    "date": "2026-10-15",
+    "time": "08:30",
+    "type": "class",
+    "subject": "CYBER401",
+    "description": "Mandatory attendance for all CSE Gamma students."
+  },
+  {
+    "id": "e88",
+    "title": "Coffee Break & Chat",
+    "date": "2026-10-16",
+    "time": "14:00",
+    "type": "personal",
+    "subject": "CSET301",
+    "description": "Preparation for upcoming end-semester examinations."
+  },
+  {
+    "id": "e89",
+    "title": "CSET301 Midterm Exam",
+    "date": "2026-10-17",
+    "time": "08:30",
+    "type": "exam",
+    "subject": "CSET301",
+    "description": "Preparation for upcoming end-semester examinations."
+  },
+  {
+    "id": "e90",
+    "title": "Coffee Break & Chat",
+    "date": "2026-10-18",
+    "time": "14:00",
+    "type": "personal",
+    "subject": "MATH301",
+    "description": "Submit PDF report to LMS before deadline."
+  },
+  {
+    "id": "e91",
+    "title": "OS303 Algorithm Design Sheet",
+    "date": "2026-10-18",
+    "time": "15:30",
+    "type": "assignment",
+    "subject": "OS303",
+    "description": "Bring laptop with full charge and environment prepared."
+  },
+  {
+    "id": "e92",
+    "title": "CSET301 Lab Hands-on Session",
+    "date": "2026-10-20",
+    "time": "16:45",
+    "type": "class",
+    "subject": "CSET301",
+    "description": "Mandatory attendance for all CSE Gamma students."
+  },
+  {
+    "id": "e93",
+    "title": "DAA201 Homework 4",
+    "date": "2026-10-21",
+    "time": "16:45",
+    "type": "assignment",
+    "subject": "DAA201",
+    "description": "Preparation for upcoming end-semester examinations."
+  },
+  {
+    "id": "e94",
+    "title": "Peer Code Review",
+    "date": "2026-10-21",
+    "time": "16:45",
+    "type": "personal",
+    "subject": "",
+    "description": "Mandatory attendance for all CSE Gamma students."
+  },
+  {
+    "id": "e95",
+    "title": "DAA201 Tutorial Session",
+    "date": "2026-10-22",
+    "time": "16:45",
+    "type": "class",
+    "subject": "DAA201",
+    "description": "Bring laptop with full charge and environment prepared."
+  },
+  {
+    "id": "e96",
+    "title": "CS202 Unit Test 1",
+    "date": "2026-10-22",
+    "time": "08:30",
+    "type": "exam",
+    "subject": "CS202",
+    "description": "Bring laptop with full charge and environment prepared."
+  },
+  {
+    "id": "e97",
+    "title": "DBMS202 Surprise Quiz",
+    "date": "2026-10-23",
+    "time": null,
+    "type": "exam",
+    "subject": "DBMS202",
+    "description": "Chapters 1 to 4 coverage. Room 304."
+  },
+  {
+    "id": "e98",
+    "title": "AI402 Group Discussion",
+    "date": "2026-10-24",
+    "time": "10:00",
+    "type": "class",
+    "subject": "AI402",
+    "description": "Review key concepts and solved example questions."
+  },
+  {
+    "id": "e99",
+    "title": "DBMS202 Tutorial Session",
+    "date": "2026-10-24",
+    "time": null,
+    "type": "class",
+    "subject": "DBMS202",
+    "description": "Graded evaluation, 15% weightage of total score."
+  },
+  {
+    "id": "e100",
+    "title": "CS202 Interactive Workshop",
+    "date": "2026-10-25",
+    "time": "15:30",
+    "type": "class",
+    "subject": "CS202",
+    "description": "Bring laptop with full charge and environment prepared."
+  },
+  {
+    "id": "e101",
+    "title": "Hackathon Preparation",
+    "date": "2026-10-26",
+    "time": "11:15",
+    "type": "personal",
+    "subject": "",
+    "description": "Bring laptop with full charge and environment prepared."
+  },
+  {
+    "id": "e102",
+    "title": "WEBDEV Guest Lecture",
+    "date": "2026-10-27",
+    "time": "10:00",
+    "type": "class",
+    "subject": "WEBDEV",
+    "description": "Preparation for upcoming end-semester examinations."
+  },
+  {
+    "id": "e103",
+    "title": "Peer Code Review",
+    "date": "2026-10-29",
+    "time": "14:00",
+    "type": "personal",
+    "subject": "",
+    "description": "Collaborative group assignment, submit via GitHub repository."
+  },
+  {
+    "id": "e104",
+    "title": "AI402 Seminar",
+    "date": "2026-10-30",
+    "time": "09:15",
+    "type": "class",
+    "subject": "AI402",
+    "description": "Collaborative group assignment, submit via GitHub repository."
+  },
+  {
+    "id": "e105",
+    "title": "Library Reading",
+    "date": "2026-10-30",
+    "time": "18:00",
+    "type": "personal",
+    "subject": "DAA201",
+    "description": "Collaborative group assignment, submit via GitHub repository."
+  },
+  {
+    "id": "e106",
+    "title": "DBMS202 Seminar",
+    "date": "2026-10-31",
+    "time": "10:00",
+    "type": "class",
+    "subject": "DBMS202",
+    "description": "Collaborative group assignment, submit via GitHub repository."
+  },
+  {
+    "id": "e107",
+    "title": "Pending: General Study Task",
+    "date": null,
+    "time": null,
+    "type": "personal",
+    "subject": "",
+    "description": "Announced in lecture, official deadline pending release."
+  },
+  {
+    "id": "e108",
+    "title": "Pending: AI402 Lab Assignment",
     "date": null,
     "time": null,
     "type": "assignment",
-    "subject": "History",
-    "description": "Read Chapter 4, response questions pending"
+    "subject": "AI402",
+    "description": "Announced in lecture, official deadline pending release."
+  },
+  {
+    "id": "e109",
+    "title": "Pending: NETWORKS Homework 4",
+    "date": null,
+    "time": null,
+    "type": "assignment",
+    "subject": "NETWORKS",
+    "description": "Announced in lecture, official deadline pending release."
+  },
+  {
+    "id": "e110",
+    "title": "Pending: General Study Task",
+    "date": null,
+    "time": null,
+    "type": "personal",
+    "subject": "",
+    "description": "Announced in lecture, official deadline pending release."
+  },
+  {
+    "id": "e111",
+    "title": "Pending: OS303 Problem Set",
+    "date": null,
+    "time": null,
+    "type": "class",
+    "subject": "OS303",
+    "description": "Announced in lecture, official deadline pending release."
+  },
+  {
+    "id": "e112",
+    "title": "Pending: CSET301 Algorithm Design Sheet",
+    "date": null,
+    "time": null,
+    "type": "assignment",
+    "subject": "CSET301",
+    "description": "Announced in lecture, official deadline pending release."
+  },
+  {
+    "id": "e113",
+    "title": "Pending: General Study Task",
+    "date": null,
+    "time": null,
+    "type": "personal",
+    "subject": "",
+    "description": "Announced in lecture, official deadline pending release."
+  },
+  {
+    "id": "e114",
+    "title": "Pending: DAA201 Problem Set",
+    "date": null,
+    "time": null,
+    "type": "assignment",
+    "subject": "DAA201",
+    "description": "Announced in lecture, official deadline pending release."
+  },
+  {
+    "id": "e115",
+    "title": "Pending: General Study Task",
+    "date": null,
+    "time": null,
+    "type": "personal",
+    "subject": "",
+    "description": "Announced in lecture, official deadline pending release."
+  },
+  {
+    "id": "e116",
+    "title": "Pending: General Study Task",
+    "date": null,
+    "time": null,
+    "type": "personal",
+    "subject": "",
+    "description": "Announced in lecture, official deadline pending release."
   }
 ]
