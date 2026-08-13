@@ -96,53 +96,53 @@
       </div>
     </section>
 
-    <!-- Controls Panel (Navigation + Peeking Search Cat + Filters) -->
-    <section class="controls-panel">
-      <div class="controls-top">
-        <div class="nav-controls">
-          <button id="prev-month-btn" class="btn btn-icon" aria-label="Previous Month">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-          </button>
-          <div id="current-month-display" class="current-month-display">08/2026</div>
-          <button id="next-month-btn" class="btn btn-icon" aria-label="Next Month">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-          </button>
-          <button id="today-btn" class="btn btn-sm">Today 🐾</button>
-        </div>
-
-        <div class="search-box-wrap">
-          <!-- 🐾 Interactive Peeking Cat -->
-          <div id="neko-peeking-search" class="neko-peeking-search" title="Click to pet Neko! 🐾">ฅ^•ﻌ•^ฅ</div>
-          <div class="search-box">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <input type="text" id="search-input" placeholder="Search events..." aria-label="Search events">
-          </div>
-        </div>
-      </div>
-
-      <div class="filters-row">
-        <div id="subject-filter-group" class="filter-group">
-          <span class="filter-label">Subject:</span>
-          <button class="chip active" data-subject="ALL">All</button>
-        </div>
-
-        <div id="type-filter-group" class="filter-group" style="margin-left: auto;">
-          <span class="filter-label">Type:</span>
-          <button class="chip active" data-type="ALL">All 🐾</button>
-          <button class="chip chip-exam" data-type="exam">Exam ⚔️</button>
-          <button class="chip chip-assignment" data-type="assignment">Assignment 📜</button>
-          <button class="chip chip-class" data-type="class">Class 🐾</button>
-          <button class="chip chip-personal" data-type="personal">Personal 🍃</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Main Calendar Display Grid -->
+    <!-- Main Calendar Display Wrapper (With Attached Control Bar Header) -->
     <main class="calendar-wrapper">
       <!-- 🐾 Interactive Sleeping Cat on Calendar Corner -->
       <div id="neko-sleeping-calendar" class="neko-sleeping-calendar" title="Pet sleeping Neko! 💤">
         🐾 ฅ(≚ᄌ≚)ฅ
         <div id="calendar-cat-bubble" class="neko-purr-bubble">nya~ 🐾</div>
+      </div>
+
+      <!-- Unified Month Control Bar Attached to Calendar Top -->
+      <div class="controls-panel">
+        <div class="controls-top">
+          <div class="nav-controls">
+            <button id="prev-month-btn" class="btn btn-icon" aria-label="Previous Month">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <div id="current-month-display" class="current-month-display">08/2026</div>
+            <button id="next-month-btn" class="btn btn-icon" aria-label="Next Month">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <button id="today-btn" class="btn btn-sm">Today 🐾</button>
+          </div>
+
+          <div class="search-box-wrap">
+            <!-- 🐾 Interactive Peeking Cat -->
+            <div id="neko-peeking-search" class="neko-peeking-search" title="Click to pet Neko! 🐾">ฅ^•ﻌ•^ฅ</div>
+            <div class="search-box">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="text" id="search-input" placeholder="Search events..." aria-label="Search events">
+            </div>
+          </div>
+        </div>
+
+        <div class="filters-row">
+          <div id="subject-filter-group" class="filter-group">
+            <span class="filter-label">Subject:</span>
+            <button class="chip active" data-subject="ALL">All</button>
+          </div>
+
+          <div id="type-filter-group" class="filter-group" style="margin-left: auto;">
+            <span class="filter-label">Type:</span>
+            <button class="chip active" data-type="ALL">All 🐾</button>
+            <button class="chip chip-exam" data-type="exam">Exam ⚔️</button>
+            <button class="chip chip-assignment" data-type="assignment">Assignment 📜</button>
+            <button class="chip chip-class" data-type="class">Class 🐾</button>
+            <button class="chip chip-personal" data-type="personal">Personal 🍃</button>
+          </div>
+        </div>
       </div>
 
       <div class="calendar-weekdays">
