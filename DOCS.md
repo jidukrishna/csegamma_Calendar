@@ -1,47 +1,41 @@
-# 侍学課暦 Class Calendar — Peach Manga & Torii Edition (with Mini Cats 🐱)
+# 🐾 CSE Gamma Class Calendar — Neko Dark Academia Edition
 
 ## 1. Overview
 
-**Class Calendar (侍学課暦)** is a mobile-responsive, zero-dependency static web application styled with a vibrant **Peach Manga & Samurai Torii** aesthetic, featuring adorable mini CSS cats (Neko 🐱) hanging out across the interface.
+**Class Calendar (CSE Gamma Edition)** is a modern, mobile-responsive, zero-dependency web application for CSE Gamma class schedules, exams, assignments, and personal quests. It features a sleek **Dark Academia / Neko** aesthetic with dynamic accent color selection, an animated **Tenor Dancing Cat Mascot (`neko.gif`)**, attached calendar header controls, and real-time custom task management.
 
 ---
 
-## 2. Aesthetic & Manga Theme Highlights
+## 2. Key Architecture & Aesthetic Features
 
-- **Visual Palette**: Warm Dark Espresso/Charcoal (`#1A1114`), Luscious Peach Pink (`#FF9EAA`, `#FF7E67`), Sunset Ochre Gold (`#FFB07C`), and Vermilion Torii Red (`#E63946`).
-- **Manga Comic Graphics**:
-  - **Custom Artwork**: High-resolution generated manga samurai hero banner illustration (`assets/manga_samurai_hero.png`) and traditional Japanese Torii Gate manga crest (`assets/manga_torii_icon.png`).
-  - **Screentone Overlay**: CSS halftone radial dot background texture (`radial-gradient`).
-  - **Panel Ink Borders & Shadows**: 2.5px solid dark ink borders with 4px offset drop-shadows (`box-shadow: 4px 4px 0px #120A0C`).
-  - **Action Sound Effect Callouts**: Rotated comic action badges ("ズバッ! ZUBAT!").
-- **Mini CSS Neko Cats (🐱)**:
-  - Roof sitting cat with animated tail wagging (`neko-roof-cat`) on top of the hero header banner.
-  - Peeking cat (`ฅ^•ﻌ•^ฅ`) sitting over the search bar.
-  - Sleeping cat (`🐾 ฅ(≚ᄌ≚)ฅ zzz...`) resting on the calendar grid top corner.
-  - Paws hanging cat (`ฅ(≈>⩊<≈)ฅ`) dangling from the Undated Tasks panel.
-  - Paw prints (`🐾`) appearing on calendar day cell hover.
-- **Mobile First Design**:
-  - Bottom sheet drawer for day detail modal on mobile devices.
-  - Touch-scrollable filter chips bar with smooth inertia scrolling.
-  - Compact day cell indicator pills and 1-tap view switcher to mobile vertical agenda list.
+- **Integrated Calendar Header Bar**:
+  - The month display (`08/2026`), navigation controls (`<`, `>`, `Today 🐾`), search box, and category/subject filter chips are attached directly to the top of the main calendar card wrapper for a unified, modern card design.
+- **Mobile-First Layout Priority**:
+  - **Calendar Grid First**: The calendar view comes **FIRST** at the very top of mobile viewports for instant access.
+  - **Ultra-Compact Micro Stats Bar**: Displays counts for *Total Quests*, *Exams ⚔️*, *Assignments 📜*, and *Pending Tasks 🐈* in a 4-column micro-strip below the calendar.
+  - **Prominent `+ Add Quest` Button**: Full-width (`100%`) primary button on mobile for easy one-tap access.
+- **Stationary Tenor Dancing Cat Mascot (`neko.gif`)**:
+  - Positioned atop the app header with generous unblocked headroom (`padding-top: 3rem`) and click-through pointer isolation so control buttons underneath remain 100% accessible.
+- **Interactive Theme Accent Color Picker**:
+  - Instantly switch theme accent colors between `Cyan` (#58A6FF), `Crimson` (#E63946), `Purple` (#A855F7), and `Emerald` (#10B981) with dynamic CSS variables and ambient glow.
+- **Custom Quest Management & Instant UI Deletion**:
+  - Graphical date picker widget supporting `DD/MM/YYYY` display formatting.
+  - Deleting custom quests from local storage instantly updates and re-renders open day detail modals in real-time.
+  - "No due date yet" toggle support for pending tasks (`date: null`).
 
 ---
 
-## 3. Directory Structure
-
-Inside the `web/` directory:
+## 3. Repository Structure
 
 ```text
-web/
-├── index.html                  # Semantic markup with Manga Samurai hero header & mini cats
-├── style.css                   # Peach Manga theme tokens, screentone patterns, ink borders & responsive rules
-├── app.js                      # Calendar engine, falling peach petals & sparkles, modal drawer
-├── events.json                 # Class events dataset
+csgamma/
+├── index.html                  # Semantic markup with integrated attached header & Neko mascot banner
+├── style.css                   # Dark Academia tokens, glassmorphism, mobile flex reordering & theme accents
+├── app.js                      # Calendar engine, filter logic, localStorage sync, instant modal re-rendering
+├── events.json                 # 100+ CSE Gamma class events, exams, assignments & quests dataset
+├── neko.gif                    # Tenor Dancing Cat mascot asset
 ├── DOCS.md                     # Technical documentation & guide (this file)
-├── website-implementation-plan.md # Architectural specification
-└── assets/                     # Generated artwork assets
-    ├── manga_samurai_hero.png  # Hero banner artwork (samurai warrior, Torii gate, peach blossoms)
-    └── manga_torii_icon.png    # Manga Torii gate emblem icon
+└── .gitignore                  # Git ignore rules
 ```
 
 ---
@@ -52,20 +46,20 @@ web/
 [
   {
     "id": "e1",
-    "title": "Midterm Exam",
+    "title": "Midterm Exam - CSET301",
     "date": "2026-08-20",
     "time": "10:00",
     "type": "exam",
-    "subject": "Physics",
-    "description": "Chapters 1-5, room 204"
+    "subject": "CSET301",
+    "description": "Chapters 1-5, Hall 204"
   },
   {
-    "id": "e6",
-    "title": "Final Project",
+    "id": "e116",
+    "title": "Final Project Prototype",
     "date": null,
     "time": null,
     "type": "assignment",
-    "subject": "Physics",
+    "subject": "MATH301",
     "description": "Announced in class, due date TBD"
   }
 ]
@@ -73,22 +67,22 @@ web/
 
 ---
 
-## 5. Mobile Responsiveness Features
+## 5. Mobile Responsiveness Highlights
 
-1. **Touch-Friendly Controls**: Touch targets minimum 44px for buttons, chips, and day cells.
-2. **Horizontal Filter Scroll**: Subjects & types bar auto-scrolls horizontally on touch devices without messy multi-line wrapping.
-3. **Mobile Drawer Modal**: Slide-up bottom sheet on mobile screens for date details.
-4. **List View Switcher**: 1-tap toggle to vertical agenda stream optimized for 1-handed mobile scrolling.
+1. **Calendar First Order**: On screens under 768px, the calendar wrapper card takes top visual priority.
+2. **Horizontal Filter Chip Carousel**: Subject & type filter chips scroll smoothly with touch inertia.
+3. **Headroom & Pointer Protection**: Container padding ensures the mascot GIF is never clipped, while isolated pointer events prevent cat overlays from blocking the `#today-btn` or search input.
+4. **Full-Width Touch Targets**: Action buttons stretch comfortably across mobile viewports for easy single-hand navigation.
 
 ---
 
 ## 6. GitHub Pages Deployment
 
-To deploy to GitHub Pages:
+To deploy updates to GitHub Pages:
 
 ```bash
-git add web/
-git commit -m "Deploy Peach Manga Samurai Calendar with Mini Cats"
+git add .
+git commit -m "Update CSE Gamma Calendar with mobile layout & attached controls"
 git push origin main
 ```
-Configure repository Settings -> Pages -> Source: `/web` (or root `/`).
+Configure repository Settings -> Pages -> Source: `main` branch.
