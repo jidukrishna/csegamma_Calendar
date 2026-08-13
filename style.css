@@ -1074,7 +1074,7 @@ body {
   .app-container {
     display: flex;
     flex-direction: column;
-    padding: 0.5rem 0.65rem 1.25rem 0.65rem;
+    padding: 1.65rem 0.65rem 1.25rem 0.65rem;
   }
 
   /* Flex Reordering: Calendar comes FIRST before Stats */
@@ -1086,9 +1086,9 @@ body {
   }
 
   .neko-roof-cat {
-    top: -20px;
-    font-size: 1.2rem;
-    left: 20px;
+    top: -22px;
+    font-size: 1.25rem;
+    left: 18px;
   }
 
   .brand-title {
