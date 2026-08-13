@@ -562,42 +562,51 @@ body {
 
 .calendar-weekdays {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(7, minmax(0, 1fr));
   background: #161B22;
   border-bottom: 1px solid var(--border-color);
   text-align: center;
   border-radius: calc(var(--radius-lg) - 1px) calc(var(--radius-lg) - 1px) 0 0;
+  width: 100%;
 }
 
 .weekday {
-  padding: 0.75rem 0.25rem;
+  padding: 0.65rem 0.15rem;
   font-family: var(--font-code);
   font-size: 0.75rem;
   font-weight: 600;
   color: var(--text-muted);
   letter-spacing: 0.05em;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .calendar-grid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-auto-rows: minmax(110px, 1fr);
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  grid-auto-rows: minmax(100px, 1fr);
   gap: 1px;
   background: var(--border-color);
   border-radius: 0 0 calc(var(--radius-lg) - 1px) calc(var(--radius-lg) - 1px);
   overflow: hidden;
+  width: 100%;
 }
 
 .calendar-day {
   background: var(--bg-surface);
-  padding: 0.6rem;
+  padding: 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
   transition: background-color var(--transition);
   position: relative;
-  min-height: 110px;
+  min-height: 100px;
+  min-width: 0;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .calendar-day:hover {
@@ -1210,28 +1219,35 @@ body {
   }
 
   .calendar-grid {
-    grid-auto-rows: minmax(70px, 1fr);
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    grid-auto-rows: minmax(62px, 1fr);
   }
 
   .calendar-day {
-    padding: 0.25rem;
-    min-height: 70px;
+    padding: 0.2rem;
+    min-height: 62px;
+    min-width: 0;
+    overflow: hidden;
   }
 
   .day-number {
-    font-size: 0.85rem;
-    width: 20px;
-    height: 20px;
+    font-size: 0.8rem;
+    width: 18px;
+    height: 18px;
   }
 
   .event-pill {
-    font-size: 0.65rem;
-    padding: 0.1rem 0.25rem;
+    font-size: 0.6rem;
+    padding: 0.08rem 0.2rem;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .weekday {
-    font-size: 0.7rem;
-    padding: 0.5rem 0.1rem;
+    font-size: 0.68rem;
+    padding: 0.4rem 0.05rem;
   }
 
   .modal-overlay {
