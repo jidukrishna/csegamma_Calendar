@@ -1,6 +1,6 @@
 /**
  * CSE Gamma — Minimalist Dark Neko Class Calendar Engine 🐾
- * Features: DD/MM/YYYY Date Formatting, Theme Animations, Date Pre-fill, Neko Petting & Custom Quests
+ * Features: Guaranteed DD/MM/YYYY Date Input & Auto-Formatting, Theme Animations, Date Pre-fill, Neko Petting & Custom Quests
  */
 
 // Application State
@@ -60,6 +60,7 @@ const elements = {
   modalCloseBtn: document.getElementById('modal-close-btn'),
   addQuestModal: document.getElementById('add-quest-modal'),
   addQuestForm: document.getElementById('add-quest-form'),
+  questDateInput: document.getElementById('quest-date-ddmmyyyy'),
   addModalCloseBtn: document.getElementById('add-modal-close-btn'),
   addModalCancelBtn: document.getElementById('add-modal-cancel-btn'),
   nekoRoofCat: document.getElementById('neko-roof-cat'),
@@ -76,13 +77,23 @@ const elements = {
   statTotalUndated: document.getElementById('stat-total-undated')
 };
 
-// Date Formatting Helper: DD/MM/YYYY
+// Date Formatting Helper: YYYY-MM-DD -> DD/MM/YYYY
 function formatDateDDMMYYYY(dateStr) {
   if (!dateStr) return '';
-  const [year, month, day] = dateStr.split('-').map(Number);
-  const dd = day < 10 ? `0${day}` : day;
-  const mm = month < 10 ? `0${month}` : month;
-  return `${dd}/${mm}/${year}`;
+  const parts = dateStr.split('-');
+  if (parts.length !== 3) return dateStr;
+  const [year, month, day] = parts;
+  return `${day.padStart(2, '0')}/${month.padStart(2, '0')}/${year}`;
+}
+
+// Convert DD/MM/YYYY -> YYYY-MM-DD
+function parseDDMMYYYYtoYYYYMMDD(ddmmyyyy) {
+  if (!ddmmyyyy || ddmmyyyy.trim() === '') return null;
+  const parts = ddmmyyyy.trim().split('/');
+  if (parts.length !== 3) return null;
+  const [day, month, year] = parts;
+  if (!day || !month || !year) return null;
+  return `${year.padStart(4, '20')}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
 }
 
 // Format Date YYYY-MM-DD -> Long Day, DD/MM/YYYY
@@ -694,10 +705,25 @@ function closeDayDetailModal() {
   state.selectedDateStr = null;
 }
 
+// Custom Quest Date Field Mask: Automatic Slash Insertion for DD/MM/YYYY
+function initDateMasking() {
+  const dateInput = elements.questDateInput;
+  if (!dateInput) return;
+
+  dateInput.addEventListener('input', (e) => {
+    let v = e.target.value.replace(/\D/g, '');
+    if (v.length >= 2 && v.length < 4) {
+      e.target.value = `${v.substring(0, 2)}/${v.substring(2)}`;
+    } else if (v.length >= 4) {
+      e.target.value = `${v.substring(0, 2)}/${v.substring(2, 4)}/${v.substring(4, 8)}`;
+    }
+  });
+}
+
 // Add Custom Quest Modal Handlers with Date Pre-fill
 function openAddQuestModal(prefilledDateStr = null) {
   if (prefilledDateStr) {
-    document.getElementById('quest-date').value = prefilledDateStr;
+    elements.questDateInput.value = formatDateDDMMYYYY(prefilledDateStr);
   }
   elements.addQuestModal.classList.add('active');
   document.body.style.overflow = 'hidden';
@@ -712,7 +738,7 @@ function closeAddQuestModal() {
 function handleAddQuestSubmit(e) {
   e.preventDefault();
   const title = document.getElementById('quest-title').value.trim();
-  const date = document.getElementById('quest-date').value.trim();
+  const dateDDMMYYYY = elements.questDateInput.value.trim();
   const time = document.getElementById('quest-time').value.trim();
   const subject = document.getElementById('quest-subject').value.trim();
   const type = document.getElementById('quest-type').value;
@@ -720,10 +746,12 @@ function handleAddQuestSubmit(e) {
 
   if (!title) return;
 
+  const parsedDateYYYYMMDD = parseDDMMYYYYtoYYYYMMDD(dateDDMMYYYY);
+
   const newQuest = {
     id: `custom_${Date.now()}_${Math.random().toString(36).substr(2, 4)}`,
     title,
-    date: date || null,
+    date: parsedDateYYYYMMDD,
     time: time || null,
     subject: subject || '',
     type: type || 'class',
@@ -885,6 +913,7 @@ function initApp() {
   elements.retryBtn.addEventListener('click', loadEvents);
 
   initAccentPicker();
+  initDateMasking();
   setupTypeFilterChips();
   initPettingSystem();
   init3DTiltPhysics();
