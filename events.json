@@ -50,7 +50,7 @@
     "date": "2026-08-19",
     "time": null,
     "type": "exam",
-    "subject": null,
+    "subject": "AAD",
     "description": "1. insertion vs merge sort\n2. insertion vs quick sort\n3. min max seq vs min max recursive"
   }
 ]
