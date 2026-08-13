@@ -1,0 +1,4 @@
+# Git Ignore rules for CSE Gamma Calendar
+mobile-app-implementation-plan.md
+.DS_Store
+*.log
