@@ -1133,16 +1133,68 @@ body {
     font-weight: 700;
   }
 
+  .app-header {
+    padding: 0.65rem 0.75rem;
+    gap: 0.5rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .brand-badge {
+    font-size: 0.625rem;
+    padding: 0.1rem 0.4rem;
+  }
+
+  .brand-title {
+    font-size: 1.15rem;
+  }
+
+  .accent-dot {
+    width: 13px;
+    height: 13px;
+  }
+
   .header-actions {
     width: 100%;
     justify-content: space-between;
-    gap: 0.4rem;
+    gap: 0.35rem;
   }
 
   .header-actions .btn {
     flex: 1;
-    padding: 0.4rem 0.5rem;
-    font-size: 0.775rem;
+    padding: 0.35rem 0.4rem;
+    font-size: 0.72rem;
+    gap: 0.25rem;
+  }
+
+  .header-actions .btn svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  /* Undated Tasks Section Compact Mobile */
+  .section-title {
+    font-size: 1.1rem;
+  }
+
+  .section-sub {
+    font-size: 0.75rem;
+  }
+
+  .undated-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .undated-card {
+    padding: 0.65rem 0.85rem;
+  }
+
+  .undated-card .event-title {
+    font-size: 0.875rem;
+  }
+
+  .undated-card .event-desc {
+    font-size: 0.75rem;
   }
 
   .form-row {
@@ -1150,12 +1202,13 @@ body {
   }
 
   .controls-panel {
-    padding: 1rem;
+    padding: 0.75rem 0.85rem;
   }
 
   .controls-top {
     flex-direction: column;
     align-items: stretch;
+    gap: 0.65rem;
   }
 
   .nav-controls {
@@ -1164,7 +1217,7 @@ body {
   }
 
   .current-month-display {
-    font-size: 1.15rem;
+    font-size: 1.05rem;
     min-width: auto;
   }
 
