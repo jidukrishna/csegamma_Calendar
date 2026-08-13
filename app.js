@@ -1,6 +1,6 @@
 /**
  * CSE Gamma — Minimalist Dark Neko Class Calendar Engine 🐾
- * Features: Accent Color Picker, Interactive Neko Petting Audio/Bubbles, 3D Card Physics & Custom Quests
+ * Features: DD/MM/YYYY Date Formatting, Theme Animations, Date Pre-fill, Neko Petting & Custom Quests
  */
 
 // Application State
@@ -24,10 +24,10 @@ const state = {
 
 // Accent Palettes Map
 const ACCENT_PALETTES = {
-  cyan: { primary: '#58A6FF', bg: 'rgba(88, 166, 255, 0.12)' },
-  crimson: { primary: '#E63946', bg: 'rgba(230, 57, 70, 0.14)' },
-  purple: { primary: '#A855F7', bg: 'rgba(168, 85, 247, 0.14)' },
-  emerald: { primary: '#10B981', bg: 'rgba(16, 185, 129, 0.14)' }
+  cyan: { primary: '#58A6FF', bg: 'rgba(88, 166, 255, 0.14)' },
+  crimson: { primary: '#E63946', bg: 'rgba(230, 57, 70, 0.16)' },
+  purple: { primary: '#A855F7', bg: 'rgba(168, 85, 247, 0.16)' },
+  emerald: { primary: '#10B981', bg: 'rgba(16, 185, 129, 0.16)' }
 };
 
 // Month Names
@@ -52,6 +52,7 @@ const elements = {
   viewToggleBtn: document.getElementById('view-toggle-btn'),
   exportIcsBtn: document.getElementById('export-ics-btn'),
   addQuestBtn: document.getElementById('add-quest-btn'),
+  modalAddQuestBtn: document.getElementById('modal-add-quest-btn'),
   dayModal: document.getElementById('day-modal'),
   modalDateTitle: document.getElementById('modal-date-title'),
   modalEventCount: document.getElementById('modal-event-count'),
@@ -75,7 +76,26 @@ const elements = {
   statTotalUndated: document.getElementById('stat-total-undated')
 };
 
-// 🎨 Feature 1: Accent Switcher Engine
+// Date Formatting Helper: DD/MM/YYYY
+function formatDateDDMMYYYY(dateStr) {
+  if (!dateStr) return '';
+  const [year, month, day] = dateStr.split('-').map(Number);
+  const dd = day < 10 ? `0${day}` : day;
+  const mm = month < 10 ? `0${month}` : month;
+  return `${dd}/${mm}/${year}`;
+}
+
+// Format Date YYYY-MM-DD -> Long Day, DD/MM/YYYY
+function formatDateLong(dateStr) {
+  if (!dateStr) return '';
+  const [year, month, day] = dateStr.split('-').map(Number);
+  const date = new Date(year, month - 1, day);
+  const weekday = date.toLocaleDateString('en-US', { weekday: 'long' });
+  const formattedDDMM = formatDateDDMMYYYY(dateStr);
+  return `${weekday}, ${formattedDDMM}`;
+}
+
+// 🎨 Accent Switcher & Background Glow Engine
 function initAccentPicker() {
   const savedAccent = localStorage.getItem('cse_gamma_accent_color') || 'cyan';
   setAccentColor(savedAccent);
@@ -243,19 +263,6 @@ function formatTime(timeStr) {
   const formattedHours = hours % 12 || 12;
   const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
   return `${formattedHours}:${formattedMinutes} ${ampm}`;
-}
-
-// Format Date YYYY-MM-DD
-function formatDateLong(dateStr) {
-  if (!dateStr) return '';
-  const [year, month, day] = dateStr.split('-').map(Number);
-  const date = new Date(year, month - 1, day);
-  return date.toLocaleDateString('en-US', {
-    weekday: 'long',
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric'
-  });
 }
 
 // Helper: Minimal Neko Empty State Builder
@@ -687,8 +694,11 @@ function closeDayDetailModal() {
   state.selectedDateStr = null;
 }
 
-// Add Custom Quest Modal Handlers
-function openAddQuestModal() {
+// Add Custom Quest Modal Handlers with Date Pre-fill
+function openAddQuestModal(prefilledDateStr = null) {
+  if (prefilledDateStr) {
+    document.getElementById('quest-date').value = prefilledDateStr;
+  }
   elements.addQuestModal.classList.add('active');
   document.body.style.overflow = 'hidden';
 }
@@ -846,7 +856,13 @@ function initApp() {
   elements.exportIcsBtn.addEventListener('click', exportICS);
   
   // Custom Quest Modal Listeners
-  elements.addQuestBtn.addEventListener('click', openAddQuestModal);
+  elements.addQuestBtn.addEventListener('click', () => openAddQuestModal());
+  elements.modalAddQuestBtn.addEventListener('click', () => {
+    const selectedDate = state.selectedDateStr;
+    closeDayDetailModal();
+    openAddQuestModal(selectedDate);
+  });
+
   elements.addModalCloseBtn.addEventListener('click', closeAddQuestModal);
   elements.addModalCancelBtn.addEventListener('click', closeAddQuestModal);
   elements.addQuestForm.addEventListener('submit', handleAddQuestSubmit);

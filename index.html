@@ -12,8 +12,9 @@
 </head>
 <body>
 
-  <!-- Minimalist Ambient Glow -->
+  <!-- Minimalist Animated Ambient Theme Glow -->
   <div id="ambient-glow" class="ambient-glow"></div>
+  <div id="ambient-particles" class="ambient-particles"></div>
 
   <div class="app-container">
     
@@ -40,7 +41,7 @@
       </div>
 
       <div class="header-actions">
-        <!-- 🎨 Feature 1: Dynamic Dark Accent Color Picker -->
+        <!-- 🎨 Accent Color Switcher -->
         <div class="accent-picker" title="Switch Accent Theme Color">
           <button class="accent-dot active" data-color="cyan" style="background: #58A6FF;" aria-label="Cyan Accent"></button>
           <button class="accent-dot" data-color="crimson" style="background: #E63946;" aria-label="Crimson Accent"></button>
@@ -102,7 +103,7 @@
           <button id="prev-month-btn" class="btn btn-icon" aria-label="Previous Month">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
           </button>
-          <div id="current-month-display" class="current-month-display">August 2026</div>
+          <div id="current-month-display" class="current-month-display">08/2026</div>
           <button id="next-month-btn" class="btn btn-icon" aria-label="Next Month">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
           </button>
@@ -186,9 +187,12 @@
             <h3 id="modal-date-title">Day Events 🐾</h3>
             <p id="modal-event-count">0 events scheduled</p>
           </div>
-          <button id="modal-close-btn" class="close-btn" aria-label="Close modal">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-          </button>
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <button id="modal-add-quest-btn" class="btn btn-sm btn-primary">+ Add Quest</button>
+            <button id="modal-close-btn" class="close-btn" aria-label="Close modal">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
         </div>
 
         <div id="modal-events-list" class="modal-body">
@@ -218,7 +222,7 @@
 
           <div class="form-row">
             <div class="form-group">
-              <label for="quest-date">Date (Leave blank if pending)</label>
+              <label for="quest-date">Date (DD/MM/YYYY)</label>
               <input type="date" id="quest-date" class="form-input">
             </div>
             <div class="form-group">

@@ -1,6 +1,6 @@
 /* ==========================================================================
    CSE Gamma — Minimalist Dark Neko Theme 🐾
-   Features: Dynamic Dark Accent Switcher, Neko Petting Audio, 3D Physics & Custom Quests
+   Features: Dynamic Theme Glow Animations, DD/MM/YYYY Format, 3D Physics & Custom Quests
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@500;600&family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap');
@@ -70,18 +70,44 @@ body {
   position: relative;
 }
 
-/* Ambient Radial Glow */
+/* Ambient Radial Glow & Animated Theme Background */
 .ambient-glow {
   position: fixed;
   top: -150px;
   left: 50%;
   transform: translateX(-50%);
-  width: 800px;
-  height: 400px;
-  background: radial-gradient(ellipse at center, var(--accent-primary-bg) 0%, rgba(13, 17, 23, 0) 70%);
+  width: 900px;
+  height: 500px;
+  background: radial-gradient(ellipse at center, var(--accent-primary-bg) 0%, rgba(13, 17, 23, 0) 75%);
   pointer-events: none;
   z-index: 0;
-  transition: background 0.3s ease;
+  transition: background 0.5s ease;
+  animation: ambientPulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes ambientPulse {
+  0% { transform: translateX(-50%) scale(1); opacity: 0.7; }
+  50% { transform: translateX(-48%) scale(1.1); opacity: 1; }
+  100% { transform: translateX(-52%) scale(1.05); opacity: 0.8; }
+}
+
+.ambient-particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(var(--accent-primary) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 0;
+  animation: particleDrift 20s linear infinite;
+}
+
+@keyframes particleDrift {
+  0% { background-position: 0 0; }
+  100% { background-position: 40px 40px; }
 }
 
 .app-container {
@@ -361,7 +387,7 @@ body {
 
 .controls-top {
   display: flex;
-  justify-content: space-between;
+  justify-space-between;
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
