@@ -34,5 +34,14 @@
     "type": "exam",
     "subject": null,
     "description": ""
+  },
+  {
+    "id": "e_1786651749884",
+    "title": "mid sem feedback",
+    "date": "2026-08-14",
+    "time": null,
+    "type": "class",
+    "subject": null,
+    "description": ""
   }
 ]
