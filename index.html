@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>CSE Gamma — Minimalist Class Calendar</title>
-  <meta name="description" content="A clean, minimalist, high-contrast dark themed class calendar for CSE Gamma with filtering, search, and mobile agenda view.">
+  <title>CSE Gamma — Minimalist Dark Neko Calendar 🐾</title>
+  <meta name="description" content="A clean, minimalist, high-contrast dark themed class calendar for CSE Gamma with CSS neko cat decorations, filtering, search, and mobile agenda view.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500;600&family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -12,7 +12,7 @@
 </head>
 <body>
 
-  <!-- Minimalist Ambient Background Effect -->
+  <!-- Minimalist Ambient Glow -->
   <div class="ambient-glow"></div>
 
   <div class="app-container">
@@ -23,13 +23,18 @@
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
         <span id="error-message">Couldn't load calendar data.</span>
       </div>
-      <button id="retry-btn" class="btn btn-outline">Retry</button>
+      <button id="retry-btn" class="btn btn-outline">Retry 🐾</button>
     </div>
 
-    <!-- Minimalist Header Banner -->
+    <!-- Minimalist Dark Header Banner with Roof Cat -->
     <header class="app-header">
+      <!-- 🐈 Roof Cat Hanging Out -->
+      <div class="neko-roof-cat" title="Neko hanging out on the header!">
+        <span class="neko-body">🐈‍⬛</span><span class="neko-tail-wag">∫</span>
+      </div>
+
       <div class="brand-group">
-        <div class="brand-badge">CSE GAMMA</div>
+        <div class="brand-badge">CSE GAMMA 🐾 ฅ^•ﻌ•^ฅ</div>
         <h1 class="brand-title">Class Calendar</h1>
       </div>
 
@@ -48,24 +53,36 @@
     <!-- Minimalist Stats Overview -->
     <section class="stats-grid" aria-label="Calendar Statistics">
       <div class="stat-card">
+        <div class="stat-header">
+          <span class="stat-icon">🐾</span>
+          <span class="stat-label">Total Quests</span>
+        </div>
         <div class="stat-value" id="stat-total-events">0</div>
-        <div class="stat-label">Total Quests</div>
       </div>
       <div class="stat-card">
+        <div class="stat-header">
+          <span class="stat-icon">⚔️</span>
+          <span class="stat-label">Exams</span>
+        </div>
         <div class="stat-value text-exam" id="stat-total-exams">0</div>
-        <div class="stat-label">Exams</div>
       </div>
       <div class="stat-card">
+        <div class="stat-header">
+          <span class="stat-icon">📜</span>
+          <span class="stat-label">Assignments</span>
+        </div>
         <div class="stat-value text-assignment" id="stat-total-assignments">0</div>
-        <div class="stat-label">Assignments</div>
       </div>
       <div class="stat-card">
+        <div class="stat-header">
+          <span class="stat-icon">🐈</span>
+          <span class="stat-label">Pending Tasks</span>
+        </div>
         <div class="stat-value text-undated" id="stat-total-undated">0</div>
-        <div class="stat-label">Pending Tasks</div>
       </div>
     </section>
 
-    <!-- Controls Panel (Navigation + Search + Filters) -->
+    <!-- Controls Panel (Navigation + Peeking Search Cat + Filters) -->
     <section class="controls-panel">
       <div class="controls-top">
         <div class="nav-controls">
@@ -76,12 +93,16 @@
           <button id="next-month-btn" class="btn btn-icon" aria-label="Next Month">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
           </button>
-          <button id="today-btn" class="btn btn-sm">Today</button>
+          <button id="today-btn" class="btn btn-sm">Today 🐾</button>
         </div>
 
-        <div class="search-box">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input type="text" id="search-input" placeholder="Search events..." aria-label="Search events">
+        <div class="search-box-wrap">
+          <!-- 🐾 Peeking Cat on Search Input -->
+          <div class="neko-peeking-search" title="Curious Neko peeking!">ฅ^•ﻌ•^ฅ</div>
+          <div class="search-box">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="search-input" placeholder="Search events..." aria-label="Search events">
+          </div>
         </div>
       </div>
 
@@ -93,17 +114,20 @@
 
         <div id="type-filter-group" class="filter-group" style="margin-left: auto;">
           <span class="filter-label">Type:</span>
-          <button class="chip active" data-type="ALL">All</button>
-          <button class="chip chip-exam" data-type="exam">Exam</button>
-          <button class="chip chip-assignment" data-type="assignment">Assignment</button>
-          <button class="chip chip-class" data-type="class">Class</button>
-          <button class="chip chip-personal" data-type="personal">Personal</button>
+          <button class="chip active" data-type="ALL">All 🐾</button>
+          <button class="chip chip-exam" data-type="exam">Exam ⚔️</button>
+          <button class="chip chip-assignment" data-type="assignment">Assignment 📜</button>
+          <button class="chip chip-class" data-type="class">Class 🐾</button>
+          <button class="chip chip-personal" data-type="personal">Personal 🍃</button>
         </div>
       </div>
     </section>
 
     <!-- Main Calendar Display Grid -->
     <main class="calendar-wrapper">
+      <!-- 🐾 Sleeping Cat on Calendar Corner -->
+      <div class="neko-sleeping-calendar" title="Sleeping Neko 💤">🐾 ฅ(≚ᄌ≚)ฅ</div>
+
       <div class="calendar-weekdays">
         <div class="weekday">SUN</div>
         <div class="weekday">MON</div>
@@ -125,8 +149,11 @@
 
     <!-- Undated Events Section -->
     <section id="undated-section" class="undated-section">
+      <!-- 🐾 Hanging Cat Paws -->
+      <div class="neko-hanging-undated" title="Hanging Cat Paws!">ฅ(≈>⩊<≈)ฅ</div>
+
       <div class="section-header">
-        <h2 class="section-title">Pending & Undated Tasks</h2>
+        <h2 class="section-title">Pending & Undated Tasks 🐾</h2>
         <span class="section-sub">Events announced without fixed deadlines</span>
       </div>
 
@@ -140,7 +167,7 @@
       <div class="modal-container">
         <div class="modal-header">
           <div class="modal-title-group">
-            <h3 id="modal-date-title">Day Events</h3>
+            <h3 id="modal-date-title">Day Events 🐾</h3>
             <p id="modal-event-count">0 events scheduled</p>
           </div>
           <button id="modal-close-btn" class="close-btn" aria-label="Close modal">
@@ -156,7 +183,7 @@
 
     <!-- Footer -->
     <footer class="app-footer">
-      <p>CSE Gamma Class Calendar &bull; Clean Minimalist Edition</p>
+      <p>CSE Gamma Class Calendar &bull; Minimal Dark Neko Edition 🐾 ฅ^•ﻌ•^ฅ</p>
     </footer>
 
   </div>
