@@ -954,24 +954,6 @@
     "description": "Collaborative group assignment, submit via GitHub repository."
   },
   {
-    "id": "e114",
-    "title": "Pending: DAA201 Problem Set",
-    "date": null,
-    "time": null,
-    "type": "assignment",
-    "subject": "DAA201",
-    "description": "Announced in lecture, official deadline pending release."
-  },
-  {
-    "id": "e115",
-    "title": "Pending: General Study Task",
-    "date": null,
-    "time": null,
-    "type": "personal",
-    "subject": null,
-    "description": "Announced in lecture, official deadline pending release."
-  },
-  {
     "id": "e116",
     "title": "Pending: General Study Task",
     "date": null,
