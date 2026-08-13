@@ -954,24 +954,6 @@
     "description": "Collaborative group assignment, submit via GitHub repository."
   },
   {
-    "id": "e112",
-    "title": "Pending: CSET301 Algorithm Design Sheet",
-    "date": null,
-    "time": null,
-    "type": "assignment",
-    "subject": "CSET301",
-    "description": "Announced in lecture, official deadline pending release."
-  },
-  {
-    "id": "e113",
-    "title": "Pending: General Study Task",
-    "date": null,
-    "time": null,
-    "type": "personal",
-    "subject": null,
-    "description": "Announced in lecture, official deadline pending release."
-  },
-  {
     "id": "e114",
     "title": "Pending: DAA201 Problem Set",
     "date": null,
