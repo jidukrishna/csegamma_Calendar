@@ -242,6 +242,12 @@ function deleteCustomEvent(id) {
   renderSubjectFilterChips();
   renderStats();
   renderView();
+
+  // Instantly re-render active day modal if open
+  if (state.selectedDateStr && elements.dayModal.classList.contains('active')) {
+    const rawEvents = state.eventsByDate.get(state.selectedDateStr) || [];
+    openDayDetailModal(state.selectedDateStr, rawEvents);
+  }
 }
 
 // Category Tags
