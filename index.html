@@ -3,172 +3,228 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>CSE Gamma — Minimalist Dark Neko Calendar 🐾</title>
-  <meta name="description" content="A clean, minimalist dark cat-themed class calendar for CSE Gamma with smooth event filtering and mobile agenda view.">
+  <title>CSE Gamma — Berserk Manga Class Calendar ⚔️</title>
+  <meta name="description" content="CSE Gamma (CSE Γ) Class Calendar — Dark Berserk Manga & Black Swordsman themed calendar with high contrast ink aesthetics and cat decorations.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500;600&family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Fira+Code:wght@500;700&family=Kosugi+Maru&family=Shippori+Mincho:wght@700;800&family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Minimalist Ambient Background Effect -->
-  <div class="ambient-glow"></div>
+  <!-- Falling Ember & Crimson Petal Canvas Background -->
+  <canvas id="sakura-canvas"></canvas>
 
   <div class="app-container">
     
     <!-- Error Notification Banner -->
     <div id="error-banner" class="error-banner" style="display: none;">
       <div style="display: flex; align-items: center; gap: 0.5rem;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
         <span id="error-message">Couldn't load calendar data.</span>
       </div>
-      <button id="retry-btn" class="btn btn-outline">Retry 🐾</button>
+      <button id="retry-btn" class="btn btn-berserk" style="padding: 0.35rem 0.85rem; font-size: 0.8rem;">Retry ⚔️</button>
     </div>
 
-    <!-- Minimalist Dark Header Banner with Cat Touches -->
-    <header class="app-header">
-      <div class="brand-group">
-        <div class="brand-badge">CSE GAMMA 🐾 ฅ^•ﻌ•^ฅ</div>
-        <h1 class="brand-title">Neko Class Calendar 🐈‍⬛</h1>
+    <!-- Berserk Manga Hero Banner with Dragon Slayer Sword Motif -->
+    <header class="manga-hero-banner">
+      <div class="neko-roof-cat" title="Black Swordsman Neko!">🐈‍⬛⚔️<span class="neko-tail-wag">∫</span></div>
+
+      <div class="manga-sound-effect">ガキィン! &lt;SACRIFICE_Γ/&gt;</div>
+      
+      <div class="manga-hero-content">
+        <img src="assets/manga_torii_icon.png" alt="Berserk Emblem" class="manga-torii-logo">
+        <div class="brand-text">
+          <div class="cse-gamma-pill">🩸 CSE GAMMA &bull; BRAND OF SACRIFICE (生贄の烙印)</div>
+          <div class="brand-title">
+            <h1>Berserk Gamma Calendar</h1>
+            <p>⚔️ Struggle, Endure, Contend (黒い剣士 ベルセルク)</p>
+          </div>
+        </div>
       </div>
 
       <div class="header-actions">
-        <button id="export-ics-btn" class="btn btn-primary" title="Export calendar to iCal file">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          <span>Export .ics</span>
+        <button id="export-ics-btn" class="btn btn-crimson" title="Export calendar to iCal file">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+          Export .ics
         </button>
-        <button id="view-toggle-btn" class="btn btn-secondary">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        <button id="view-toggle-btn" class="btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
           <span>List View</span>
         </button>
       </div>
     </header>
 
-    <!-- Minimalist Stats Overview -->
+    <!-- Stats Overview Cards -->
     <section class="stats-grid" aria-label="Calendar Statistics">
       <div class="stat-card">
-        <div class="stat-header">
-          <span class="stat-icon">🐾</span>
-          <span class="stat-label">Total Quests</span>
+        <div class="stat-icon total">⚔️</div>
+        <div class="stat-info">
+          <div id="stat-total-events" class="stat-value">0</div>
+          <div class="stat-label">
+            <span>Struggle Quests</span>
+            <span class="stat-kanji-tag">(全)</span>
+          </div>
         </div>
-        <div class="stat-value" id="stat-total-events">0</div>
       </div>
+
       <div class="stat-card">
-        <div class="stat-header">
-          <span class="stat-icon">⚔️</span>
-          <span class="stat-label">Exams</span>
+        <div class="stat-icon exam">🩸</div>
+        <div class="stat-info">
+          <div id="stat-total-exams" class="stat-value">0</div>
+          <div class="stat-label">
+            <span>Eclipse Exams</span>
+            <span class="stat-kanji-tag">(試)</span>
+          </div>
         </div>
-        <div class="stat-value text-exam" id="stat-total-exams">0</div>
       </div>
+
       <div class="stat-card">
-        <div class="stat-header">
-          <span class="stat-icon">📜</span>
-          <span class="stat-label">Assignments</span>
+        <div class="stat-icon assignment">📜</div>
+        <div class="stat-info">
+          <div id="stat-total-assignments" class="stat-value">0</div>
+          <div class="stat-label">
+            <span>Behelit Scrolls</span>
+            <span class="stat-kanji-tag">(巻)</span>
+          </div>
         </div>
-        <div class="stat-value text-assignment" id="stat-total-assignments">0</div>
       </div>
+
       <div class="stat-card">
-        <div class="stat-header">
-          <span class="stat-icon">🐈</span>
-          <span class="stat-label">Pending Tasks</span>
+        <div class="stat-icon undated">🐈‍⬛</div>
+        <div class="stat-info">
+          <div id="stat-total-undated" class="stat-value">0</div>
+          <div class="stat-label">
+            <span>Uncharted Tasks</span>
+            <span class="stat-kanji-tag">(未)</span>
+          </div>
         </div>
-        <div class="stat-value text-undated" id="stat-total-undated">0</div>
       </div>
     </section>
 
-    <!-- Controls Panel (Navigation + Search + Filters) -->
+    <!-- Controls Panel -->
     <section class="controls-panel">
       <div class="controls-top">
         <div class="nav-controls">
-          <button id="prev-month-btn" class="btn btn-icon" aria-label="Previous Month">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          <button id="prev-month-btn" class="btn btn-icon-only" aria-label="Previous Month" title="Previous Month">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
           </button>
           <div id="current-month-display" class="current-month-display">August 2026</div>
-          <button id="next-month-btn" class="btn btn-icon" aria-label="Next Month">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          <button id="next-month-btn" class="btn btn-icon-only" aria-label="Next Month" title="Next Month">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
           </button>
-          <button id="today-btn" class="btn btn-sm">Today 🐾</button>
+          <button id="today-btn" class="btn btn-crimson" style="margin-left: 0.25rem; padding: 0.4rem 0.85rem; font-size: 0.8rem;">Today 今 ⚔️</button>
         </div>
 
-        <div class="search-box">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input type="text" id="search-input" placeholder="ฅ^•ﻌ•^ฅ search events..." aria-label="Search events">
+        <div class="search-box-container">
+          <div class="neko-peeking-search" title="Berserk Neko!">ฅ^•ﻌ•^ฅ &lt;struggle/&gt;</div>
+          <div class="search-box">
+            <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+            <input type="text" id="search-input" placeholder="[berserk_gamma:~$] search quests..." aria-label="Search events">
+          </div>
         </div>
       </div>
 
       <div class="filters-row">
         <div id="subject-filter-group" class="filter-group">
           <span class="filter-label">Subject:</span>
-          <button class="chip active" data-subject="ALL">All</button>
+          <button class="chip active" data-subject="ALL">All Subjects</button>
         </div>
 
         <div id="type-filter-group" class="filter-group" style="margin-left: auto;">
           <span class="filter-label">Type:</span>
-          <button class="chip active" data-type="ALL">All 🐾</button>
-          <button class="chip chip-exam" data-type="exam">Exam ⚔️</button>
+          <button class="chip active" data-type="ALL">All ⚔️</button>
+          <button class="chip chip-exam" data-type="exam">Exam 🩸</button>
           <button class="chip chip-assignment" data-type="assignment">Assignment 📜</button>
-          <button class="chip chip-class" data-type="class">Class 🐾</button>
+          <button class="chip chip-class" data-type="class">Class ⚔️</button>
           <button class="chip chip-personal" data-type="personal">Personal 🍃</button>
         </div>
       </div>
     </section>
 
-    <!-- Main Calendar Display Grid -->
+    <!-- Main Calendar Display Area -->
     <main class="calendar-wrapper">
+      <div class="neko-sleeping-calendar" title="Sleeping Black Neko">🐾 ฅ(≚ᄌ≚)ฅ</div>
+
       <div class="calendar-weekdays">
-        <div class="weekday">SUN</div>
-        <div class="weekday">MON</div>
-        <div class="weekday">TUE</div>
-        <div class="weekday">WED</div>
-        <div class="weekday">THU</div>
-        <div class="weekday">FRI</div>
-        <div class="weekday">SAT</div>
+        <div class="weekday">
+          <span>SUN</span>
+          <span class="weekday-kanji">日</span>
+        </div>
+        <div class="weekday">
+          <span>MON</span>
+          <span class="weekday-kanji">月</span>
+        </div>
+        <div class="weekday">
+          <span>TUE</span>
+          <span class="weekday-kanji">火</span>
+        </div>
+        <div class="weekday">
+          <span>WED</span>
+          <span class="weekday-kanji">水</span>
+        </div>
+        <div class="weekday">
+          <span>THU</span>
+          <span class="weekday-kanji">木</span>
+        </div>
+        <div class="weekday">
+          <span>FRI</span>
+          <span class="weekday-kanji">金</span>
+        </div>
+        <div class="weekday">
+          <span>SAT</span>
+          <span class="weekday-kanji">土</span>
+        </div>
       </div>
 
       <div id="calendar-grid" class="calendar-grid">
-        <!-- Dynamically rendered -->
+        <!-- Populated via app.js -->
       </div>
 
-      <div id="agenda-wrapper" class="agenda-wrapper" style="display: none;">
-        <!-- Dynamically rendered -->
+      <div id="agenda-wrapper" class="agenda-wrapper" style="display: none; padding: 1.25rem;">
+        <!-- Populated via app.js -->
       </div>
     </main>
 
     <!-- Undated Events Section -->
     <section id="undated-section" class="undated-section">
+      <div class="neko-hanging-undated" title="Hanging Cat Paws!">ฅ(≈>⩊<≈)ฅ</div>
+
       <div class="section-header">
-        <h2 class="section-title">Pending Tasks & Lab Scrolls 🐾</h2>
-        <span class="section-sub">Events announced without fixed deadlines</span>
+        <h2 class="section-title">
+          <span>🩸 CSE Gamma Behelit Scrolls</span>
+          <span style="font-size: 1rem; color: var(--crimson-red); font-family: var(--font-kanji);">(未定の課題)</span>
+        </h2>
+        <span style="font-size: 0.85rem; color: var(--text-muted);">Announced lab & assignment scrolls awaiting destiny</span>
       </div>
 
       <div id="undated-grid" class="undated-grid">
-        <!-- Dynamically rendered -->
+        <!-- Populated via app.js -->
       </div>
     </section>
 
-    <!-- Day Details Modal Dialog -->
+    <!-- Modal Dialog -->
     <div id="day-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-date-title">
       <div class="modal-container">
         <div class="modal-header">
           <div class="modal-title-group">
-            <h3 id="modal-date-title">Day Events 🐾</h3>
+            <h3 id="modal-date-title">Day Quests ⚔️</h3>
             <p id="modal-event-count">0 events scheduled</p>
           </div>
           <button id="modal-close-btn" class="close-btn" aria-label="Close modal">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
           </button>
         </div>
 
         <div id="modal-events-list" class="modal-body">
-          <!-- Dynamically rendered -->
+          <!-- Populated dynamically -->
         </div>
       </div>
     </div>
 
     <!-- Footer -->
     <footer class="app-footer">
-      <p>CSE Gamma Class Calendar &bull; Dark Neko Edition 🐾 ฅ^•ﻌ•^ฅ</p>
+      <p>⚔️ CSE GAMMA BERSERK MANGA CALENDAR &bull; BLACK SWORDSMAN DOJO &bull; 🩸 🖤 ⚡ ベルセルク</p>
     </footer>
 
   </div>
