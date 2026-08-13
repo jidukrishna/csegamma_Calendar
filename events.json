@@ -954,15 +954,6 @@
     "description": "Collaborative group assignment, submit via GitHub repository."
   },
   {
-    "id": "e111",
-    "title": "Pending: OS303 Problem Set",
-    "date": null,
-    "time": null,
-    "type": "class",
-    "subject": "OS303",
-    "description": "Announced in lecture, official deadline pending release."
-  },
-  {
     "id": "e112",
     "title": "Pending: CSET301 Algorithm Design Sheet",
     "date": null,
