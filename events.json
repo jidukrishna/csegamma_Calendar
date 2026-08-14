@@ -10,12 +10,12 @@
   },
   {
     "id": "e_1786651256818",
-    "title": "CN ALGo",
+    "title": "CN ALGO",
     "date": "2026-08-18",
     "time": null,
     "type": "class",
     "subject": "CN",
-    "description": ""
+    "description": "Rough record il ezhuthanam. miss will share it."
   },
   {
     "id": "e_1786657084161",
@@ -33,7 +33,7 @@
     "time": null,
     "type": "class",
     "subject": null,
-    "description": ""
+    "description": "last date for nptel registeration"
   },
   {
     "id": "e_1786657154314",
@@ -42,7 +42,7 @@
     "time": null,
     "type": "assignment",
     "subject": null,
-    "description": ""
+    "description": "fast track week 4"
   },
   {
     "id": "e_1786657220229",
@@ -52,5 +52,23 @@
     "type": "exam",
     "subject": "AAD",
     "description": "1. insertion vs merge sort\n2. insertion vs quick sort\n3. min max seq vs min max recursive"
+  },
+  {
+    "id": "e_1786671551810",
+    "title": "RSET onam celeb",
+    "date": "2026-08-21",
+    "time": null,
+    "type": "personal",
+    "subject": null,
+    "description": ""
+  },
+  {
+    "id": "e_1786671563893",
+    "title": "aaravam",
+    "date": "2026-08-22",
+    "time": null,
+    "type": "personal",
+    "subject": null,
+    "description": ""
   }
 ]
