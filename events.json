@@ -27,15 +27,6 @@
     "description": ""
   },
   {
-    "id": "e_1786657120293",
-    "title": "nptel registration",
-    "date": "2026-08-14",
-    "time": null,
-    "type": "class",
-    "subject": null,
-    "description": "last date for nptel registeration"
-  },
-  {
     "id": "e_1786657154314",
     "title": "nptel assignment",
     "date": "2026-08-19",
@@ -68,6 +59,15 @@
     "date": "2026-08-22",
     "time": null,
     "type": "personal",
+    "subject": null,
+    "description": ""
+  },
+  {
+    "id": "e_1786719760080",
+    "title": "nptel registration",
+    "date": "2026-08-17",
+    "time": null,
+    "type": "class",
     "subject": null,
     "description": ""
   }
